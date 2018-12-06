@@ -1,0 +1,16 @@
+name: keyboard_visibility_example
+description: Keyboard visibility example
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  keyboard_visibility:
+    path: ../
+
+flutter:
+  uses-material-design: true
