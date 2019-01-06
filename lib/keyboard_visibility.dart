@@ -26,9 +26,9 @@ class KeyboardVisibilitySubscriber {
 /// The notification class that handles all information
 class KeyboardVisibilityNotification {
   static const EventChannel _keyboardVisibilityStream = const EventChannel('github.com/adee42/flutter_keyboard_visibility');
-  Map<int, KeyboardVisibilitySubscriber> _list = Map<int, KeyboardVisibilitySubscriber>();
+  static Map<int, KeyboardVisibilitySubscriber> _list = Map<int, KeyboardVisibilitySubscriber>();
   StreamSubscription _keyboardVisibilitySubscription;
-  int _currentIndex = 0;
+  static int _currentIndex = 0;
 
   /// The current state of the keyboard visibility. Can be used without subscribing
   bool isKeyboardVisible = false;
