@@ -5,8 +5,12 @@ Notification service for soft-keyboard visibility
 # Usage
 
 Add the dependency to your pubspec.yaml file in the root folder of your project.
-Look for the 'dependencies:'-line and add the following line after this line: '  keyboard_visibility: any' or '  keyboard_visibility: ^[CURRENT VERSION NUMBER]'
-(Please not that the two spaces in the beginning of the line are important)
+Look for the 'dependencies:'-line and add the following line after this line: 
+```  keyboard_visibility: any```
+or 
+```  keyboard_visibility: ^[CURRENT VERSION NUMBER]```
+
+(Please note that the two spaces in the beginning of the line are important)
 Run 'flutter packages get' in your root folder after saving the pubspec.yaml file.
 For additional documentation about the pubspec.yaml file please refer to the official flutter documentation
 [using packages](http://flutter.io/docs/development/packages-and-plugins/using-packages)
