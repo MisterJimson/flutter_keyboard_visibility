@@ -9,7 +9,7 @@ Look for the 'dependencies:'-line and add the following line after this line: ' 
 (Please not that the two spaces in the beginning of the line are important)
 Run 'flutter packages get' in your root folder after saving the pubspec.yaml file.
 For additional documentation about the pubspec.yaml file please refer to the official flutter documentation
-[using packages]http://flutter.io/docs/development/packages-and-plugins/using-packages
+[using packages](http://flutter.io/docs/development/packages-and-plugins/using-packages)
 
 
 Import `package:keyboard_visibility/keyboard_visibility.dart`, instantiate `KeyboardVisibilityNotification`
