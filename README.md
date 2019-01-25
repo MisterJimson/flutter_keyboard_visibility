@@ -19,16 +19,21 @@ For additional documentation about the pubspec.yaml file please refer to the off
 Import `package:keyboard_visibility/keyboard_visibility.dart`, instantiate `KeyboardVisibilityNotification`
 and use the Android and iOS notifications to get events about changes of the visibility of the soft-keyboard
 
-Example:
+The best practice to call the addNewListener function is inside the initState function as in the following example:
 
 ```dart
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
-KeyboardVisibilityNotification().addNewListener(
-  onChange: (bool visible) {
-    // called when the keyboard visibility changes
-  },
-);
+@protected
+void initState() {
+  super.initState();
+
+  KeyboardVisibilityNotification().addNewListener(
+    onChange: (bool visible) {
+      print(visible);
+    },
+  );
+}
 ```
 
 Also check out the example included with the package
