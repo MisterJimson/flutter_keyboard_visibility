@@ -85,7 +85,7 @@ class KeyboardVisibilityNotification {
 
   /// Internal function to clear class on dispose
   dispose() {
-    _keyboardVisibilitySubscription?.cancel();
+    _keyboardVisibilitySubscription?.cancel()?.catchError(() { });
     _keyboardVisibilitySubscription = null;
   }
 }
