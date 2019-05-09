@@ -1,3 +1,8 @@
+## [0.5.3] - 09-05-2019
+
+* Fixed exception call bug on dispose
+* Change behavior of plugin registration
+
 ## [0.5.2] - 12-03-2019
 
 * Fixed possible bug on dispose

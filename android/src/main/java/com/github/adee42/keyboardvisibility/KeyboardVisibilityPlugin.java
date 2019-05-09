@@ -12,6 +12,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,17 +21,17 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 
-public class KeyboardVisibilityPlugin implements StreamHandler, Application.ActivityLifecycleCallbacks, ViewTreeObserver.OnGlobalLayoutListener {
+public class KeyboardVisibilityPlugin implements StreamHandler, Application.ActivityLifecycleCallbacks, ViewTreeObserver.OnGlobalLayoutListener, PluginRegistry.NewIntentListener {
     private static final String STREAM_CHANNEL_NAME = "github.com/adee42/flutter_keyboard_visibility";
     EventSink eventsSink;
+    Registrar registrar;
     boolean isVisible;
     View mainView;
 
 
     KeyboardVisibilityPlugin(Registrar registrar) {
+		this.registrar = registrar;
         eventsSink = null;
-        mainView = ((ViewGroup) registrar.activity().findViewById(android.R.id.content)).getChildAt(0);
-        mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
     @Override
@@ -92,6 +93,8 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
         final EventChannel eventChannel = new EventChannel(registrar.messenger(), STREAM_CHANNEL_NAME);
         KeyboardVisibilityPlugin instance = new KeyboardVisibilityPlugin(registrar);
         eventChannel.setStreamHandler(instance);
+
+		registrar.addNewIntentListener(instance);
     }
 
     @Override
@@ -108,5 +111,17 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
     @Override
     public void onCancel(Object arguments) {
         eventsSink = null;
+    }
+
+    @Override
+    public boolean onNewIntent(Intent intent) {
+		try {
+			mainView = ((ViewGroup)registrar.activity().findViewById(android.R.id.content)).getChildAt(0);
+			mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+		}
+		catch (Exception e) {
+			// do nothing
+		}
+		return true;
     }
 }
