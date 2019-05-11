@@ -1,3 +1,7 @@
+## [0.5.5] - 11-05-2019
+
+* Changed README.md and formatted Dart code
+
 ## [0.5.4] - 11-05-2019
 
 * Fixed plugin registration bug

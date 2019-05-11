@@ -6,10 +6,12 @@ Notification service for soft-keyboard visibility
 
 Add the dependency to your pubspec.yaml file in the root folder of your project.
 Look for the 'dependencies:'-line and add the following line after this line: 
-```  keyboard_visibility: any
+```
+keyboard_visibility: any
 ```
 or 
-```  keyboard_visibility: ^[CURRENT VERSION NUMBER]
+```
+keyboard_visibility: ^[CURRENT VERSION NUMBER]
 ```
 
 (Please note that the two spaces in the beginning of the line are important)
