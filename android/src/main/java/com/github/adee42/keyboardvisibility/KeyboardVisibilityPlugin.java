@@ -37,18 +37,20 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
     public void onGlobalLayout() {
         Rect r = new Rect();
 
-        mainView.getWindowVisibleDisplayFrame(r);
+        if (mainView != null) {
+			mainView.getWindowVisibleDisplayFrame(r);
 
-        // check if the visible part of the screen is less than 85%
-        // if it is then the keyboard is showing
-        boolean newState = ((double)r.height() / (double)mainView.getRootView().getHeight()) < 0.85;
+			// check if the visible part of the screen is less than 85%
+			// if it is then the keyboard is showing
+			boolean newState = ((double)r.height() / (double)mainView.getRootView().getHeight()) < 0.85;
 
-        if (newState != isVisible) {
-            isVisible = newState;
-            if (eventsSink != null) {
-                eventsSink.success(isVisible ? 1 : 0);
-            }
-        }
+			if (newState != isVisible) {
+				isVisible = newState;
+				if (eventsSink != null) {
+					eventsSink.success(isVisible ? 1 : 0);
+				}
+			}
+		}
     }
 
     @Override

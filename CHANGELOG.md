@@ -1,3 +1,9 @@
+## [0.5.6] - 13-05-2019
+
+* added null check in Android layout callback
+* changed behavior on dispose
+* catching exceptions if callbacks are not unsubscribed properly
+
 ## [0.5.5] - 11-05-2019
 
 * Changed README.md and formatted Dart code

@@ -24,7 +24,7 @@ class KeyboardVisibilityNotification {
       const EventChannel('github.com/adee42/flutter_keyboard_visibility');
   static Map<int, KeyboardVisibilitySubscriber> _list =
       Map<int, KeyboardVisibilitySubscriber>();
-  StreamSubscription _keyboardVisibilitySubscription;
+  static StreamSubscription _keyboardVisibilitySubscription;
   static int _currentIndex = 0;
 
   /// The current state of the keyboard visibility. Can be used without subscribing
@@ -32,7 +32,6 @@ class KeyboardVisibilityNotification {
 
   /// Constructs a new [KeyboardVisibilityNotification]
   KeyboardVisibilityNotification() {
-    _keyboardVisibilitySubscription = null;
     _keyboardVisibilitySubscription ??= _keyboardVisibilityStream
         .receiveBroadcastStream()
         .listen(onKeyboardEvent);
@@ -44,15 +43,17 @@ class KeyboardVisibilityNotification {
 
     // send a message to all subscribers notifying them about the new state
     _list.forEach((subscriber, s) {
-      if (s.onChange != null) {
-        s.onChange(isKeyboardVisible);
-      }
-      if ((s.onShow != null) && isKeyboardVisible) {
-        s.onShow();
-      }
-      if ((s.onHide != null) && !isKeyboardVisible) {
-        s.onHide();
-      }
+      try {
+        if (s.onChange != null) {
+          s.onChange(isKeyboardVisible);
+        }
+        if ((s.onShow != null) && isKeyboardVisible) {
+          s.onShow();
+        }
+        if ((s.onHide != null) && !isKeyboardVisible) {
+          s.onHide();
+        }
+      } catch (_) {}
     });
   }
 
@@ -83,7 +84,9 @@ class KeyboardVisibilityNotification {
 
   /// Internal function to clear class on dispose
   dispose() {
-    _keyboardVisibilitySubscription?.cancel()?.catchError((e) {});
-    _keyboardVisibilitySubscription = null;
+    if (_list.length == 0) {
+      _keyboardVisibilitySubscription?.cancel()?.catchError((e) {});
+      _keyboardVisibilitySubscription = null;
+    }
   }
 }
