@@ -15,7 +15,6 @@ Flutter keyboard visibility project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Reachability'
 
   s.ios.deployment_target = '8.0'
 end
