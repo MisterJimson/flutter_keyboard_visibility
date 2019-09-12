@@ -91,7 +91,6 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
     }
 
     private void unregisterListener() {
-        registrar.activity().getApplication().unregisterActivityLifecycleCallbacks(this);
         if (mainView != null) {
             mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             mainView = null;
