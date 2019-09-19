@@ -1,3 +1,11 @@
+## [0.7.0] - 19-09-2019
+
+* Forked the project as original repo stopped being updated
+* Fix: ViewTreeObserver is unregister when start second Activity because onStop call delay
+* Fix: Activity() returns null when using backgrounding flutter plugins
+* AndroidX migration
+* Remove reachability dependency
+
 ## [0.5.6] - 13-05-2019
 
 * added null check in Android layout callback
