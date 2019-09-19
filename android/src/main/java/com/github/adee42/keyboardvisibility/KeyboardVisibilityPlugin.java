@@ -1,23 +1,18 @@
 package com.github.adee42.keyboardvisibility;
 
-import io.flutter.plugin.common.EventChannel;
-import io.flutter.plugin.common.EventChannel.EventSink;
-import io.flutter.plugin.common.EventChannel.StreamHandler;
-import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-
 import android.app.Activity;
 import android.app.Application;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+
+import io.flutter.app.FlutterActivity;
+import io.flutter.plugin.common.EventChannel;
+import io.flutter.plugin.common.EventChannel.EventSink;
+import io.flutter.plugin.common.EventChannel.StreamHandler;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 
 public class KeyboardVisibilityPlugin implements StreamHandler, Application.ActivityLifecycleCallbacks, ViewTreeObserver.OnGlobalLayoutListener {
@@ -59,12 +54,13 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityStarted(Activity activity) {
-        try {
-            mainView = ((ViewGroup)activity.findViewById(android.R.id.content)).getChildAt(0);
-            mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        }
-        catch (Exception e) {
-            // do nothing
+        if (activity instanceof FlutterActivity) {
+            try {
+                mainView = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+                mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+            } catch (Exception e) {
+                // do nothing
+            }
         }
     }
 
@@ -78,7 +74,9 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityStopped(Activity activity) {
-        unregisterListener();
+        if (activity instanceof FlutterActivity) {
+            unregisterListener();
+        }
     }
 
     @Override
@@ -87,8 +85,9 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
-        unregisterListener();
+        if (activity instanceof FlutterActivity) {
+            unregisterListener();
+        }
     }
 
     private void unregisterListener() {
