@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  keyboard_visibility:
+  flutter_keyboard_visibility:
     path: ../
 
 flutter:

@@ -22,7 +22,7 @@
 @implementation FLTKeyboardVisibilityPlugin
 
 +(void) registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-    FlutterEventChannel *stream = [FlutterEventChannel eventChannelWithName:@"github.com/adee42/flutter_keyboard_visibility" binaryMessenger:[registrar messenger]];
+    FlutterEventChannel *stream = [FlutterEventChannel eventChannelWithName:@"flutter_keyboard_visibility" binaryMessenger:[registrar messenger]];
     
     FLTKeyboardVisibilityPlugin *instance = [[FLTKeyboardVisibilityPlugin alloc] init];
     [stream setStreamHandler:instance];

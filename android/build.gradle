@@ -1,4 +1,4 @@
-group 'com.github.adee42.keyboardvisibility'
+group 'com.flutter.keyboardvisibility'
 version '1.0-SNAPSHOT'
 
 buildscript {
