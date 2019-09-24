@@ -6,6 +6,7 @@
 * AndroidX migration
 * Remove reachability dependency
 
+### The below changelog is from the original package 
 ## [0.5.6] - 13-05-2019
 
 * added null check in Android layout callback
