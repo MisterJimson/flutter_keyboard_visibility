@@ -15,7 +15,7 @@ Import `package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart`
 The best practice to call the addNewListener function is inside the initState function as in the following example:
 
 ```dart
-import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 @override
 void initState() {
