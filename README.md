@@ -1,4 +1,6 @@
 # Flutter Keyboard Visibility
+[![pub package](https://img.shields.io/pub/v/flutter_keyboard_visibility.svg?label=flutter_keyboard_visibility&color=blue)](https://pub.dev/packages/flutter_keyboard_visibility)
+
 Notification service for keyboard visibility.
 This is a fork, original project [here](https://github.com/adee42/flutter_keyboard_visibility).
 
