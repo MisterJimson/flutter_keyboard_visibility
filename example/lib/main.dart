@@ -27,30 +27,27 @@ class KeyboardVisibilityExample extends StatefulWidget {
 }
 
 class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
-  KeyboardVisibilityNotification _keyboardVisibility =
-      KeyboardVisibilityNotification();
-  int _keyboardVisibilitySubscriberId;
   bool _keyboardState;
 
   @protected
   void initState() {
     super.initState();
+    _keyboardState = KeyboardVisibility.isKeyboardVisible;
+    KeyboardVisibility.onChange.listen((bool visible) {
+      setState(() {
+        _keyboardState = visible;
+      });
+    });
 
-    _keyboardState = _keyboardVisibility.isKeyboardVisible;
-
-    _keyboardVisibilitySubscriberId = _keyboardVisibility.addNewListener(
-      onChange: (bool visible) {
-        setState(() {
-          _keyboardState = visible;
-        });
-      },
-    );
+    KeyboardVisibility.onChange.listen((bool visible) {
+      print(visible);
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _keyboardVisibility.removeListener(_keyboardVisibilitySubscriberId);
+    KeyboardVisibility.dispose();
   }
 
   @override
