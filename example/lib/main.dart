@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @protected
   void initState() {
     super.initState();
-    _keyboardState = KeyboardVisibility.isKeyboardVisible;
+    _keyboardState = KeyboardVisibility.isVisible;
     KeyboardVisibility.onChange.listen((bool visible) {
       setState(() {
         _keyboardState = visible;

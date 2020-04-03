@@ -19,13 +19,13 @@ class KeyboardVisibility {
     return _onChange;
   }
 
-  static bool isKeyboardVisible = false;
+  static bool isVisible = false;
 
   KeyboardVisibility._();
 
   static void _onKeyboardEvent(dynamic arg) {
-    isKeyboardVisible = (arg as int) == 1;
-    _onChangeController.add(isKeyboardVisible);
+    isVisible = (arg as int) == 1;
+    _onChangeController.add(isVisible);
   }
 
   static void dispose() {
