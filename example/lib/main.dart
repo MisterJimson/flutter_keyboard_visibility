@@ -5,28 +5,14 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Keyboard visibility example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: KeyboardVisibilityExample(),
-    );
-  }
-}
-
-class KeyboardVisibilityExample extends StatefulWidget {
-  KeyboardVisibilityExample({Key key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
 
   @override
-  _KeyboardVisibilityExampleState createState() =>
-      _KeyboardVisibilityExampleState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
+class _MyAppState extends State<MyApp> {
   bool _keyboardState;
 
   @protected
@@ -38,43 +24,42 @@ class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
         _keyboardState = visible;
       });
     });
+  }
 
-    KeyboardVisibility.onChange.listen((bool visible) {
-      print(visible);
-    });
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Keyboard visibility example'),
+        ),
+        body: Center(
+          child: Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Input box for keyboard test',
+                  ),
+                ),
+                Container(height: 60.0),
+                Text(
+                  'The keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
     KeyboardVisibility.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Keyboard visibility example'),
-      ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextField(
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  labelText: 'Input box for keyboard test',
-                ),
-              ),
-              Container(height: 60.0),
-              Text(
-                  'The current state of the keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}'),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
