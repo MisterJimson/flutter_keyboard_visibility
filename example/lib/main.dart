@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,14 +21,14 @@ class MyApp extends StatelessWidget {
 class KeyboardVisibilityExample extends StatefulWidget {
   KeyboardVisibilityExample({Key key}) : super(key: key);
 
-
   @override
-  _KeyboardVisibilityExampleState createState() => _KeyboardVisibilityExampleState();
+  _KeyboardVisibilityExampleState createState() =>
+      _KeyboardVisibilityExampleState();
 }
 
 class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
-
-  KeyboardVisibilityNotification _keyboardVisibility = new KeyboardVisibilityNotification();
+  KeyboardVisibilityNotification _keyboardVisibility =
+      KeyboardVisibilityNotification();
   int _keyboardVisibilitySubscriberId;
   bool _keyboardState;
 
@@ -51,6 +49,7 @@ class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
 
   @override
   void dispose() {
+    super.dispose();
     _keyboardVisibility.removeListener(_keyboardVisibilitySubscriberId);
   }
 
@@ -69,15 +68,14 @@ class _KeyboardVisibilityExampleState extends State<KeyboardVisibilityExample> {
               TextField(
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                    labelText: 'Input box for keyboard test',
+                  labelText: 'Input box for keyboard test',
                 ),
               ),
               Container(height: 60.0),
               Text(
-                'The current state of the keyboard is: ' + (_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'),
-              ),
+                  'The current state of the keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}'),
             ],
-          )
+          ),
         ),
       ),
     );

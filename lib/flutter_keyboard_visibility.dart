@@ -21,9 +21,8 @@ class KeyboardVisibilitySubscriber {
 /// The notification class that handles all information
 class KeyboardVisibilityNotification {
   static const EventChannel _keyboardVisibilityStream =
-      const EventChannel('flutter_keyboard_visibility');
-  static Map<int, KeyboardVisibilitySubscriber> _list =
-      Map<int, KeyboardVisibilitySubscriber>();
+      EventChannel('flutter_keyboard_visibility');
+  static final Map<int, KeyboardVisibilitySubscriber> _list = {};
   static StreamSubscription _keyboardVisibilitySubscription;
   static int _currentIndex = 0;
 
@@ -83,8 +82,8 @@ class KeyboardVisibilityNotification {
   }
 
   /// Internal function to clear class on dispose
-  dispose() {
-    if (_list.length == 0) {
+  void dispose() {
+    if (_list.isEmpty) {
       _keyboardVisibilitySubscription?.cancel()?.catchError((e) {});
       _keyboardVisibilitySubscription = null;
     }
