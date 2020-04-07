@@ -1,3 +1,7 @@
+## [0.8.0] - 04-07-2020
+
+* Fixed visibility value not changing in Kotlin based Flutter apps
+
 ## [0.7.0] - 19-09-2019
 
 * Forked the project as original repo stopped being updated
