@@ -54,7 +54,7 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityStarted(Activity activity) {
-        if (activity instanceof FlutterActivity) {
+        if (isFlutterActivity(activity)) {
             try {
                 mainView = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
                 mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
@@ -74,7 +74,7 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityStopped(Activity activity) {
-        if (activity instanceof FlutterActivity) {
+        if (isFlutterActivity(activity)) {
             unregisterListener();
         }
     }
@@ -85,7 +85,7 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        if (activity instanceof FlutterActivity) {
+        if (isFlutterActivity(activity)) {
             unregisterListener();
         }
     }
@@ -123,5 +123,14 @@ public class KeyboardVisibilityPlugin implements StreamHandler, Application.Acti
     @Override
     public void onCancel(Object arguments) {
         eventsSink = null;
+    }
+
+    private boolean isFlutterActivity(Activity activity) {
+        try {
+            return activity instanceof FlutterActivity ||
+                    Class.forName("io.flutter.embedding.android.FlutterActivity").isInstance(activity);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
