@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Keyboard visibility example'),
+          title: Text('Keyboard Visibility Example'),
         ),
         body: Center(
           child: Padding(
@@ -55,11 +55,5 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    KeyboardVisibility.dispose();
   }
 }
