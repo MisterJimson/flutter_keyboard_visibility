@@ -1,3 +1,7 @@
+## [2.0.0] - 04-07-2020
+
+* Redesigned public API to be stream based.
+
 ## [0.8.0] - 04-07-2020
 
 * Fixed visibility value not changing in Kotlin based Flutter apps
