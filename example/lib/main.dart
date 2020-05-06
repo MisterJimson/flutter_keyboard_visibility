@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _keyboardState;
 
-  @protected
+  @override
   void initState() {
     super.initState();
     _keyboardState = KeyboardVisibility.isVisible;
