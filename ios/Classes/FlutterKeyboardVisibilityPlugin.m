@@ -6,11 +6,11 @@
 //  Copyright © 2018 The Chromium Authors. All rights reserved.
 //
 
-#import "KeyboardVisibilityPlugin.h"
+#import "FlutterKeyboardVisibilityPlugin.h"
 
 @import CoreLocation;
 
-@interface FLTKeyboardVisibilityPlugin() <FlutterStreamHandler>
+@interface FlutterKeyboardVisibilityPlugin() <FlutterStreamHandler>
 
 @property (copy, nonatomic) FlutterEventSink flutterEventSink;
 @property (assign, nonatomic) BOOL flutterEventListening;
@@ -19,18 +19,18 @@
 @end
 
 
-@implementation FLTKeyboardVisibilityPlugin
+@implementation FlutterKeyboardVisibilityPlugin
 
 +(void) registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     FlutterEventChannel *stream = [FlutterEventChannel eventChannelWithName:@"flutter_keyboard_visibility" binaryMessenger:[registrar messenger]];
-    
-    FLTKeyboardVisibilityPlugin *instance = [[FLTKeyboardVisibilityPlugin alloc] init];
+
+    FlutterKeyboardVisibilityPlugin *instance = [[FlutterKeyboardVisibilityPlugin alloc] init];
     [stream setStreamHandler:instance];
 }
 
 -(instancetype)init {
     self = [super init];
-    
+
     self.isVisible = NO;
 
     // set up the notifier
@@ -38,7 +38,7 @@
     [center addObserver:self selector:@selector(didShow) name:UIKeyboardDidShowNotification object:nil];
     [center addObserver:self selector:@selector(willShow) name:UIKeyboardWillShowNotification object:nil];
 	[center addObserver:self selector:@selector(didHide) name:UIKeyboardWillHideNotification object:nil];
-    
+
     return self;
 }
 
@@ -83,7 +83,7 @@
     if (self.isVisible) {
         self.flutterEventSink([NSNumber numberWithInt:1]);
     }
-    
+
     return nil;
 }
 
