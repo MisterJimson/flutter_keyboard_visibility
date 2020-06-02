@@ -1,12 +1,16 @@
-## [2.0.0] - 04-07-2020
+## [3.0.0] - June 2, 2020
+
+* Migrated to new Android plugin APIs
+
+## [2.0.0] - April 7, 2020
 
 * Redesigned public API to be stream based.
 
-## [0.8.0] - 04-07-2020
+## [0.8.0] - April 7, 2020
 
 * Fixed visibility value not changing in Kotlin based Flutter apps
 
-## [0.7.0] - 19-09-2019
+## [0.7.0] - September 19, 2019
 
 * Forked the project as original repo stopped being updated
 * Fix: ViewTreeObserver is unregister when start second Activity because onStop call delay
