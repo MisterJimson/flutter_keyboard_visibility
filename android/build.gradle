@@ -1,5 +1,5 @@
-group 'com.flutter.keyboardvisibility'
-version '1.0-SNAPSHOT'
+group 'com.jrai.flutter_keyboard_visibility'
+version '1.0'
 
 buildscript {
     repositories {
@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
@@ -22,11 +22,10 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-    
+    compileSdkVersion 28
+
     defaultConfig {
         minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
