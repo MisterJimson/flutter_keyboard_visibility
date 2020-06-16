@@ -6,6 +6,9 @@
 
 build/
 
-.idea/
-
 *.iml
+
+# Ignore the root .idea folder except the runConfigurations folder
+!idea/
+.idea/*
+!/.idea/runConfigurations/
