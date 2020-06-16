@@ -1,3 +1,11 @@
+## [3.1.0] - June 16, 2020
+
+Thanks to matthew-carroll for these features and helping fix the bug
+
+* KeyboardVisibilityProvider for InheritedWidget style access to keyboard visibility within the Widget tree
+* Added setVisibilityForTesting to assist for testing with fake values
+* Fixed visibility not being reporting on Android for apps with pre Flutter 1.12 Android projects
+
 ## [3.0.0] - June 2, 2020
 
 * Migrated to new Android plugin APIs
