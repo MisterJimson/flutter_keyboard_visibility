@@ -38,6 +38,7 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
   public static void registerWith(PluginRegistry.Registrar registrar) {
     final FlutterKeyboardVisibilityPlugin plugin = new FlutterKeyboardVisibilityPlugin();
     plugin.init(registrar.messenger());
+    plugin.listenForKeyboard(registrar.activity());
   }
 
   private void init(BinaryMessenger messenger) {
