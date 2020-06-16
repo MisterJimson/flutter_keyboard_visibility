@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Keyboard Visibility Example'),
+          title: Text('Keyboard Visibility Example: Pre 1.12'),
         ),
         body: Center(
           child: Padding(
