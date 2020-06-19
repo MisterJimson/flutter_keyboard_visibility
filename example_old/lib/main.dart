@@ -28,28 +28,30 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Keyboard Visibility Example: Pre 1.12'),
-        ),
-        body: Center(
-          child: Padding(
-            padding: EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextField(
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Input box for keyboard test',
+    return KeyboardDismissOnTap(
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Keyboard Visibility Example'),
+          ),
+          body: Center(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      labelText: 'Input box for keyboard test',
+                    ),
                   ),
-                ),
-                Container(height: 60.0),
-                Text(
-                  'The keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}',
-                ),
-              ],
+                  Container(height: 60.0),
+                  Text(
+                    'The keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

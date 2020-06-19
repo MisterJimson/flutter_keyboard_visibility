@@ -1,3 +1,9 @@
+## [3.2.0] - June 16, 2020
+
+Thanks to matthew-carroll for this feature
+
+* KeyboardDismissOnTap to allow for tapping outside of the focused field to dismiss the keyboard
+
 ## [3.1.0] - June 16, 2020
 
 Thanks to matthew-carroll for these features and helping fix the bug

@@ -9,16 +9,14 @@ This is a fork, original project [here](https://github.com/adee42/flutter_keyboa
 Add the dependency to your pubspec.yaml
 ```
 dependencies:
-  flutter_keyboard_visibility: ^3.1.0
+  flutter_keyboard_visibility: ^3.2.0
 ```
-# Usage
+## Usage: React to Keyboard Visibility Changes
 
-## Option 1: Within your `Widget` tree
-
+### Option 1: Within your `Widget` tree
 Build your `Widget` tree based on whether or not the keyboard is
 visible by including a `KeyboardVisibilityProvider` near the top
 of your tree.
-
 ```dart
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
@@ -40,7 +38,7 @@ Widget build(BuildContext context) {
 }
 ```
 
-## Option 2: Direct query and subscription
+### Option 2: Direct query and subscription
 
 Query and/or subscribe to keyboard visibility directly with the  
 `KeyboardVisibility` class.
@@ -58,5 +56,18 @@ void initState() {
   KeyboardVisibility.onChange.listen((bool visible) {
     print('Keyboard visibility update. Is visible: ${visible}');
   });
+}
+```
+## Usage: Dismiss keyboard on tap
+Place a `KeyboardDismissOnTap` near the top of your `Widget` tree. When a user taps outside of the currently focused `Widget`, the `Widget` will drop focus and the keyboard will be dismissed.
+```dart
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
+// Somewhere near the top of your tree...
+@override
+Widget build(BuildContext context) {
+  return KeyboardDismissOnTap(
+    child: MyDemoPage(),
+  );
 }
 ```
