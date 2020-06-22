@@ -1,3 +1,9 @@
+## [3.2.1] - June 22, 2020
+
+Thanks to ram231 for this fix
+
+* Fixed KeyboardDismissOnTap sometimes reopening the keyboard
+
 ## [3.2.0] - June 16, 2020
 
 Thanks to matthew-carroll for this feature

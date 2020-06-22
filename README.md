@@ -9,7 +9,7 @@ This is a fork, original project [here](https://github.com/adee42/flutter_keyboa
 Add the dependency to your pubspec.yaml
 ```
 dependencies:
-  flutter_keyboard_visibility: ^3.2.0
+  flutter_keyboard_visibility: ^3.2.1
 ```
 ## Usage: React to Keyboard Visibility Changes
 
