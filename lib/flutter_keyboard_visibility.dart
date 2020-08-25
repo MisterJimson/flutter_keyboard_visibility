@@ -16,7 +16,8 @@ class KeyboardVisibility {
   /// Emits true every time the keyboard is shown, and false every time the
   /// keyboard is dismissed.
   static Stream<bool> get onChange {
-    if (!_isInitialized) {
+    // If _testIsVisible set, don't try to create the EventChannel
+    if (!_isInitialized && _testIsVisible == null) {
       _keyboardVisibilityStream
           .receiveBroadcastStream()
           .listen(_onKeyboardEvent);

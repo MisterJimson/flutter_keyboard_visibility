@@ -1,7 +1,7 @@
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_keyboard_visibility_example/main.dart';
+import 'package:example_old/main.dart';
 
 /// If [KeyboardVisibility.setVisibilityForTesting] is set we should not see
 /// a MissingPluginException logged
