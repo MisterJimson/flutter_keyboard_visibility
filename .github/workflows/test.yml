@@ -16,6 +16,14 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter test
+      - run: flutter pub get
+        working-directory: ./example
+      - run: flutter test
+        working-directory: ./example
+      - run: flutter pub get
+        working-directory: ./example_old
+      - run: flutter test
+        working-directory: ./example_old
 
   lint:
     name: Lint
@@ -27,3 +35,11 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter analyze
+      - run: flutter pub get
+        working-directory: ./example
+      - run: flutter analyze
+        working-directory: ./example
+      - run: flutter pub get
+        working-directory: ./example_old
+      - run: flutter analyze
+        working-directory: ./example_old
