@@ -1,3 +1,7 @@
+## [3.2.2] - August 26, 2020
+
+* MissingPluginException if no longer thrown during `flutter test` if you first call `KeyboardVisibility.setVisibilityForTesting(value)` in your test
+
 ## [3.2.1] - June 22, 2020
 
 Thanks to ram231 for this fix
