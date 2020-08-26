@@ -5,11 +5,11 @@ React to keyboard visibility changes.
 
 This is a fork, original project [here](https://github.com/adee42/flutter_keyboard_visibility).
 
-# Install
+## Install
 Add the dependency to your pubspec.yaml
 ```
 dependencies:
-  flutter_keyboard_visibility: ^3.2.1
+  flutter_keyboard_visibility: ^3.2.2
 ```
 ## Usage: React to Keyboard Visibility Changes
 
@@ -69,5 +69,15 @@ Widget build(BuildContext context) {
   return KeyboardDismissOnTap(
     child: MyDemoPage(),
   );
+}
+```
+## Testing
+Call `KeyboardVisibility.setVisibilityForTesting(value)` to set a custom value to use during `flutter test`
+```dart
+void main() {
+  testWidgets('My Test', (WidgetTester tester) async {
+    KeyboardVisibility.setVisibilityForTesting(true);
+    await tester.pumpWidget(MyApp());
+  });
 }
 ```
