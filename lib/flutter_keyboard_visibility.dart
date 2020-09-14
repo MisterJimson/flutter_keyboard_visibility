@@ -188,6 +188,9 @@ class KeyboardDismissOnTap extends StatelessWidget {
   }
 }
 
+import 'package:flutter/widgets.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
 /// A convenience builder that exposes if the native keyboard is visible.
 class KeyboardVisibilityBuilder extends StatelessWidget {
   const KeyboardVisibilityBuilder({Key key, this.builder}) : super(key: key);
@@ -199,7 +202,7 @@ class KeyboardVisibilityBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
       stream: KeyboardVisibility.onChange,
-      initialData: false,
+      initialData: KeyboardVisibility.isVisible,
       builder: (context, snapshot) {
         final isKeyboardVisible = snapshot.data;
 
