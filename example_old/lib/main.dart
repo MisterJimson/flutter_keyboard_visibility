@@ -5,32 +5,12 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool _keyboardState;
-
-  @override
-  void initState() {
-    super.initState();
-    _keyboardState = KeyboardVisibility.isVisible;
-    KeyboardVisibility.onChange.listen((bool visible) {
-      setState(() {
-        _keyboardState = visible;
-      });
-    });
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return KeyboardDismissOnTap(
-      child: MaterialApp(
-        home: Scaffold(
+    return MaterialApp(
+      home: KeyboardDismissOnTap(
+        child: Scaffold(
           appBar: AppBar(
             title: Text('Keyboard Visibility Example'),
           ),
@@ -47,9 +27,11 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Container(height: 60.0),
-                  Text(
-                    'The keyboard is: ${_keyboardState ? 'VISIBLE' : 'NOT VISIBLE'}',
-                  ),
+                  KeyboardVisibilityBuilder(builder: (context, visible) {
+                    return Text(
+                      'The keyboard is: ${visible ? 'VISIBLE' : 'NOT VISIBLE'}',
+                    );
+                  }),
                 ],
               ),
             ),

@@ -7,13 +7,28 @@ This is a fork, original project [here](https://github.com/adee42/flutter_keyboa
 
 ## Install
 Add the dependency to your pubspec.yaml
-```
+```yaml
 dependencies:
-  flutter_keyboard_visibility: ^3.2.2
+  flutter_keyboard_visibility: ^3.3.0
 ```
 ## Usage: React to Keyboard Visibility Changes
+### Option 1: Within your `Widget` tree using a builder
+Build your Widget tree based on whether or not the keyboard is visible by using `KeyboardVisibilityBuilder`.
+```dart
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-### Option 1: Within your `Widget` tree
+/// In any of your widgets...
+@override
+Widget build(BuildContext context) {
+  return KeyboardVisibilityBuilder(
+    builder: (context, isKeyboardVisible) {
+      return Text(
+        'The keyboard is: ${isKeyboardVisible ? 'VISIBLE' : 'NOT VISIBLE'}',
+      );
+    }
+  );
+```
+### Option 2: Within your `Widget` tree using a provider
 Build your `Widget` tree based on whether or not the keyboard is
 visible by including a `KeyboardVisibilityProvider` near the top
 of your tree.
@@ -38,7 +53,7 @@ Widget build(BuildContext context) {
 }
 ```
 
-### Option 2: Direct query and subscription
+### Option 3: Direct query and subscription
 
 Query and/or subscribe to keyboard visibility directly with the  
 `KeyboardVisibility` class.
