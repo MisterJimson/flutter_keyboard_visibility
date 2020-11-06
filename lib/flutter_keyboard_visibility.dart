@@ -6,6 +6,8 @@ import 'package:flutter/widgets.dart';
 /// Provides access to the current keyboard visibility state and emits
 /// changes as they happen.
 class KeyboardVisibility {
+  KeyboardVisibility._();
+
   static const _keyboardVisibilityStream =
       EventChannel('flutter_keyboard_visibility');
 
@@ -46,8 +48,6 @@ class KeyboardVisibility {
     _testIsVisible = isKeyboardVisible;
     _onChangeController.add(_testIsVisible);
   }
-
-  KeyboardVisibility._();
 
   static void _onKeyboardEvent(dynamic arg) {
     _isVisible = (arg as int) == 1;
