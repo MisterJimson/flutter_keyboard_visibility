@@ -1,2 +1,10 @@
 
 .DS_Store
+
+flutter_keyboard_visibility_platform_interface/.dart_tool/
+
+flutter_keyboard_visibility_platform_interface/.idea/
+
+flutter_keyboard_visibility_platform_interface/.packages
+
+flutter_keyboard_visibility_platform_interface/pubspec.lock
