@@ -1,15 +1,14 @@
-import 'package:flutter/services.dart';
 import 'dart:async';
-
 import 'package:flutter/widgets.dart';
+import 'package:flutter_keyboard_visibility_platform_interface/flutter_keyboard_visibility_platform_interface.dart';
 
 /// Provides access to the current keyboard visibility state and emits
 /// changes as they happen.
 class KeyboardVisibility {
   KeyboardVisibility._();
 
-  static const _keyboardVisibilityStream =
-      EventChannel('flutter_keyboard_visibility');
+  static FlutterKeyboardVisibilityPlatform get _platform =>
+      FlutterKeyboardVisibilityPlatform.instance;
 
   static bool _isInitialized = false;
   static final _onChangeController = StreamController<bool>();
@@ -20,9 +19,7 @@ class KeyboardVisibility {
   static Stream<bool> get onChange {
     // If _testIsVisible set, don't try to create the EventChannel
     if (!_isInitialized && _testIsVisible == null) {
-      _keyboardVisibilityStream
-          .receiveBroadcastStream()
-          .listen(_onKeyboardEvent);
+      _platform.onChange.listen(_updateValue);
       _isInitialized = true;
     }
     return _onChange;
@@ -45,13 +42,13 @@ class KeyboardVisibility {
   /// using fake values altogether, set `isKeyboardVisible` to null.
   @visibleForTesting
   static void setVisibilityForTesting(bool isKeyboardVisible) {
-    _testIsVisible = isKeyboardVisible;
-    _onChangeController.add(_testIsVisible);
+    _updateValue(isKeyboardVisible);
   }
 
-  static void _onKeyboardEvent(dynamic arg) {
-    _isVisible = (arg as int) == 1;
-    _onChangeController.add(isVisible);
+  static void _updateValue(bool newValue) {
+    _isVisible = newValue;
+    _testIsVisible = newValue;
+    _onChangeController.add(newValue);
   }
 }
 
