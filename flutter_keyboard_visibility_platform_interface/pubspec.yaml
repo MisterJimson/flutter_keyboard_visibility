@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.2.3
+  meta: any
   plugin_platform_interface: ^1.0.3
 
 dev_dependencies:
