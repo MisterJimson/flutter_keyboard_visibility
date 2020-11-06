@@ -1,3 +1,9 @@
+## [3.3.0] - November 6, 2020
+
+Thanks to lukepighetti for this feature
+
+* Added `KeyboardVisibilityBuilder` to access keyboard visibility with the builder pattern
+
 ## [3.2.2] - August 26, 2020
 
 * MissingPluginException if no longer thrown during `flutter test` if you first call `KeyboardVisibility.setVisibilityForTesting(value)` in your test
