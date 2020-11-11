@@ -15,15 +15,21 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter test
+        working-directory: ./flutter_keyboard_visibility_platform_interface
       - run: flutter pub get
-        working-directory: ./example
-      - run: flutter test
-        working-directory: ./example
+        working-directory: ./flutter_keyboard_visibility_platform_web
       - run: flutter pub get
-        working-directory: ./example_old
+        working-directory: ./flutter_keyboard_visibility
+      - run: flutter pub get
+        working-directory: ./flutter_keyboard_visibility/example
+      - run: flutter pub get
+        working-directory: ./flutter_keyboard_visibility/example_old
       - run: flutter test
-        working-directory: ./example_old
+        working-directory: ./flutter_keyboard_visibility
+      - run: flutter test
+        working-directory: ./flutter_keyboard_visibility/example
+      - run: flutter test
+        working-directory: ./flutter_keyboard_visibility/example_old
 
   lint:
     name: Lint
@@ -34,12 +40,22 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
+        working-directory: ./flutter_keyboard_visibility_platform_interface
       - run: flutter pub get
-        working-directory: ./example
+        working-directory: ./flutter_keyboard_visibility_platform_web
       - run: flutter pub get
-        working-directory: ./example_old
+        working-directory: ./flutter_keyboard_visibility
+      - run: flutter pub get
+        working-directory: ./flutter_keyboard_visibility/example
+      - run: flutter pub get
+        working-directory: ./flutter_keyboard_visibility/example_old
       - run: flutter analyze
+        working-directory: ./flutter_keyboard_visibility_platform_interface
       - run: flutter analyze
-        working-directory: ./example
+        working-directory: ./flutter_keyboard_visibility_platform_web
       - run: flutter analyze
-        working-directory: ./example_old
+        working-directory: ./flutter_keyboard_visibility
+      - run: flutter analyze
+        working-directory: ./flutter_keyboard_visibility/example
+      - run: flutter analyze
+        working-directory: ./flutter_keyboard_visibility/example_old
