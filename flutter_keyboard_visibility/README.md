@@ -3,8 +3,6 @@
 
 React to keyboard visibility changes.
 
-This is a fork, original project [here](https://github.com/adee42/flutter_keyboard_visibility).
-
 ## Install
 Add the dependency to your pubspec.yaml
 ```yaml

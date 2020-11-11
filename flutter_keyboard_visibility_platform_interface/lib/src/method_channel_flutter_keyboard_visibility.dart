@@ -11,11 +11,9 @@ class MethodChannelFlutterKeyboardVisibility
 
   @override
   Stream<bool> get onChange {
-    if (_onKeyboardVisibilityChange == null) {
-      _onKeyboardVisibilityChange = eventChannel
-          .receiveBroadcastStream()
-          .map((dynamic event) => (event as int) == 1);
-    }
+    _onKeyboardVisibilityChange ??= eventChannel
+        .receiveBroadcastStream()
+        .map((dynamic event) => (event as int) == 1);
     return _onKeyboardVisibilityChange;
   }
 }
