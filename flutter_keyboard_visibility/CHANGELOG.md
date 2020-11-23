@@ -1,3 +1,7 @@
+## [4.0.1] - November 23, 2020
+
+* Update documentation
+
 ## [4.0.0] - November 23, 2020
 
 * Federated the plugin to better support more platforms going forward
