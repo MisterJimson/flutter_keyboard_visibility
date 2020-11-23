@@ -1,3 +1,16 @@
+## [4.0.1] - November 23, 2020
+
+* Update documentation
+
+## [4.0.0] - November 23, 2020
+
+* Federated the plugin to better support more platforms going forward
+* Refactored internal implementation
+* Deprecated KeyboardVisibility static access, will be removed in a future release
+* Added KeyboardVisibilityController as a new way to access keyboard visibility
+* KeyboardVisibilityBuilder & KeyboardVisibilityProvider now have `controller` parameters that allow
+you to pass a mock implementation of KeyboardVisibilityController for testing.
+
 ## [3.3.0] - November 6, 2020
 
 Thanks to lukepighetti for this feature

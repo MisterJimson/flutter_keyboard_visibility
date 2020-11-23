@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_keyboard_visibility_example/main.dart';
 
+// ignore_for_file: deprecated_member_use
+
 /// If [KeyboardVisibility.setVisibilityForTesting] is set we should not see
 /// a MissingPluginException logged
 void main() {

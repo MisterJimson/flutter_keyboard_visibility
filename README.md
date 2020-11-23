@@ -7,7 +7,7 @@ React to keyboard visibility changes.
 Add the dependency to your pubspec.yaml
 ```yaml
 dependencies:
-  flutter_keyboard_visibility: ^3.3.0
+  flutter_keyboard_visibility: ^4.0.0
 ```
 ## Usage: React to Keyboard Visibility Changes
 ### Option 1: Within your `Widget` tree using a builder
@@ -54,7 +54,7 @@ Widget build(BuildContext context) {
 ### Option 3: Direct query and subscription
 
 Query and/or subscribe to keyboard visibility directly with the  
-`KeyboardVisibility` class.
+`KeyboardVisibilityController` class.
 
 ```dart
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -62,11 +62,13 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 @override
 void initState() {
   super.initState();
+
+  var keyboardVisibilityController = KeyboardVisibilityController();
   // Query
-  print('Keyboard visibility direct query: ${KeyboardVisibility.isVisible}');
+  print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
   
   // Subscribe
-  KeyboardVisibility.onChange.listen((bool visible) {
+  keyboardVisibilityController.listen((bool visible) {
     print('Keyboard visibility update. Is visible: ${visible}');
   });
 }
