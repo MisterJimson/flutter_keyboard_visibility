@@ -85,12 +85,25 @@ Widget build(BuildContext context) {
 }
 ```
 ## Testing
-Call `KeyboardVisibility.setVisibilityForTesting(value)` to set a custom value to use during `flutter test`
+Mock `MockKeyboardVisibilityController` and pass it to `KeyboardVisibilityBuilder` or `KeyboardVisibilityProvider`
 ```dart
 void main() {
   testWidgets('My Test', (WidgetTester tester) async {
-    KeyboardVisibility.setVisibilityForTesting(true);
-    await tester.pumpWidget(MyApp());
+     // Pretend that the keyboard is visible.
+      var mockController = MockKeyboardVisibilityController();
+      when(mockController.onChange)
+          .thenAnswer((_) => Stream.fromIterable([true]));
+      when(mockController.isVisible).thenAnswer((_) => true);
+
+      await tester.pumpWidget(
+        KeyboardVisibilityBuilder(
+          controller: mockController,
+          builder: (_, _isKeyboardVisible) {
+            // _isKeyboardVisible is true!
+            return SizedBox();
+          },
+        ),
+      );
   });
 }
 ```

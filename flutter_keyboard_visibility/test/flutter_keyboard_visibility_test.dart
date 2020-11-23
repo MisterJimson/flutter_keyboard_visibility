@@ -121,7 +121,7 @@ void main() {
           .thenAnswer((_) => Stream.fromIterable([true]));
       when(mockController.isVisible).thenAnswer((_) => true);
 
-      // Build a Widget tree and query KeyboardVisibilityProvider
+      // Build a Widget tree and query KeyboardVisibilityBuilder
       // for the visibility of the keyboard.
       bool isKeyboardVisible;
 
@@ -135,7 +135,7 @@ void main() {
         ),
       );
 
-      // Verify that KeyboardVisibilityProvider reported that the
+      // Verify that KeyboardVisibilityBuilder reported that the
       // keyboard is visible.
       expect(isKeyboardVisible, true);
     });
@@ -148,7 +148,7 @@ void main() {
           .thenAnswer((_) => Stream.fromIterable([false]));
       when(mockController.isVisible).thenAnswer((_) => false);
 
-      // Build a Widget tree and query KeyboardVisibilityProvider
+      // Build a Widget tree and query KeyboardVisibilityBuilder
       // for the visibility of the keyboard.
       bool isKeyboardVisible;
 
@@ -162,7 +162,7 @@ void main() {
         ),
       );
 
-      // Verify that KeyboardVisibilityProvider reported that the
+      // Verify that KeyboardVisibilityBuilder reported that the
       // keyboard is visible.
       expect(isKeyboardVisible, false);
     });
@@ -176,7 +176,7 @@ void main() {
       when(mockController.onChange).thenAnswer((_) => streamController.stream);
       when(mockController.isVisible).thenAnswer((_) => true);
 
-      // Build a Widget tree with a KeyboardVisibilityProvider.
+      // Build a Widget tree with a KeyboardVisibilityBuilder.
       bool isKeyboardVisible;
 
       await tester.pumpWidget(
@@ -196,8 +196,6 @@ void main() {
       streamController.add(false);
       when(mockController.isVisible).thenAnswer((_) => false);
 
-      // Pump the tree to allow the InheritedWidget dependency to
-      // rebuild its descendants.
       await tester.pumpAndSettle();
 
       // Verify that our descendant rebuilt itself, and received the
