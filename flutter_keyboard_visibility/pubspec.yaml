@@ -10,8 +10,8 @@ environment:
 
 dependencies:
   meta: any
-  flutter_keyboard_visibility_platform_interface: ^1.0.0
-  flutter_keyboard_visibility_web: ^1.0.0
+  flutter_keyboard_visibility_platform_interface: ^1.0.1
+  flutter_keyboard_visibility_web: ^1.0.1
   flutter:
     sdk: flutter
 
