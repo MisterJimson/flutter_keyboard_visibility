@@ -6,7 +6,7 @@ repository: https://github.com/MisterJimson/flutter_keyboard_visibility
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.6"
+  flutter: ">=1.20.0"
 
 flutter:
   plugin:
@@ -16,8 +16,7 @@ flutter:
         fileName: flutter_keyboard_visibility_web.dart
 
 dependencies:
-  flutter_keyboard_visibility_platform_interface:
-    path: ../flutter_keyboard_visibility_platform_interface
+  flutter_keyboard_visibility_platform_interface: ^1.0.0
   flutter_web_plugins:
     sdk: flutter
   flutter:
