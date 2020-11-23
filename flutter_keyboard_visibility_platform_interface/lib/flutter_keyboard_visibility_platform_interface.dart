@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter_keyboard_visibility_platform_interface/src/method_channel_flutter_keyboard_visibility.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+/// The platform interface for the flutter_keyboard_visibility plugin
 abstract class FlutterKeyboardVisibilityPlatform extends PlatformInterface {
+  /// The platform interface for the flutter_keyboard_visibility plugin
   FlutterKeyboardVisibilityPlatform() : super(token: _token);
 
   static final Object _token = Object();
@@ -23,6 +25,7 @@ abstract class FlutterKeyboardVisibilityPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  /// Emits changes to keyboard visibility from the platform
   Stream<bool> get onChange {
     throw UnimplementedError('get onChange has not been implemented.');
   }
