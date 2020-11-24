@@ -1,3 +1,7 @@
+## [4.0.2] - November 24, 2020
+
+* Update documentation
+
 ## [4.0.1] - November 23, 2020
 
 * Update documentation
