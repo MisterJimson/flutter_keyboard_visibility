@@ -53,7 +53,7 @@ Widget build(BuildContext context) {
 
 ### Option 3: Direct query and subscription
 
-Query and/or subscribe to keyboard visibility directly with the  
+Query and/or subscribe to keyboard visibility directly with the
 `KeyboardVisibilityController` class.
 
 ```dart
@@ -66,9 +66,9 @@ void initState() {
   var keyboardVisibilityController = KeyboardVisibilityController();
   // Query
   print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
-  
+
   // Subscribe
-  keyboardVisibilityController.listen((bool visible) {
+  keyboardVisibilityController.onChange.listen((bool visible) {
     print('Keyboard visibility update. Is visible: ${visible}');
   });
 }

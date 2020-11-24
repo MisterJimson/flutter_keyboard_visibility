@@ -68,7 +68,7 @@ void initState() {
   print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
 
   // Subscribe
-  keyboardVisibilityController.listen((bool visible) {
+  keyboardVisibilityController.onChange.listen((bool visible) {
     print('Keyboard visibility update. Is visible: ${visible}');
   });
 }
