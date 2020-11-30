@@ -1,3 +1,8 @@
+## [5.0.0-nullsafety.0] - November 30, 2020
+
+* Migrated to null safety
+* Removed deprecated KeyboardVisibility static access APIs
+
 ## [4.0.2] - November 24, 2020
 
 * Update documentation
