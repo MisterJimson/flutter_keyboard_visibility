@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 /// the focus will be removed and the keyboard will be hidden.
 class KeyboardDismissOnTap extends StatelessWidget {
   const KeyboardDismissOnTap({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   final Widget child;
@@ -18,7 +18,7 @@ class KeyboardDismissOnTap extends StatelessWidget {
     final currentFocus = FocusScope.of(context);
 
     if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
-      FocusManager.instance.primaryFocus.unfocus();
+      FocusManager.instance.primaryFocus?.unfocus();
     }
   }
 

@@ -29,14 +29,14 @@ class KeyboardVisibilityProvider extends StatefulWidget {
   /// Optional: pass in a controller you already have created. This is useful
   /// for testing, as you can pass in a mock instance. If no controller is
   /// passed in, one will be created automatically.
-  final KeyboardVisibilityController controller;
+  final KeyboardVisibilityController? controller;
 
   KeyboardVisibilityController get _controller =>
       controller ?? KeyboardVisibilityController();
 
   const KeyboardVisibilityProvider({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.controller,
   }) : super(key: key);
 
@@ -51,7 +51,7 @@ class KeyboardVisibilityProvider extends StatefulWidget {
   static bool isKeyboardVisible(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<
-            _KeyboardVisibilityInheritedWidget>()
+            _KeyboardVisibilityInheritedWidget>()!
         .isKeyboardVisible;
   }
 
@@ -62,7 +62,7 @@ class KeyboardVisibilityProvider extends StatefulWidget {
 
 class _KeyboardVisibilityProviderState
     extends State<KeyboardVisibilityProvider> {
-  StreamSubscription _subscription;
+  late StreamSubscription _subscription;
   bool _isKeyboardVisible = false;
 
   @override
@@ -98,9 +98,9 @@ class _KeyboardVisibilityProviderState
 /// `isKeyboardVisible` changes.
 class _KeyboardVisibilityInheritedWidget extends InheritedWidget {
   _KeyboardVisibilityInheritedWidget({
-    Key key,
-    @required this.isKeyboardVisible,
-    Widget child,
+    Key? key,
+    required this.isKeyboardVisible,
+    required Widget child,
   }) : super(key: key, child: child);
 
   final bool isKeyboardVisible;
