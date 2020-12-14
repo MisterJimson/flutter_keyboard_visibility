@@ -1,3 +1,7 @@
+## [4.0.3-beta.0] - December 14, 2020
+
+* Remove Android X import and annotations in Android code to reduce possibility of build errors
+
 ## [4.0.2] - November 24, 2020
 
 * Update documentation
