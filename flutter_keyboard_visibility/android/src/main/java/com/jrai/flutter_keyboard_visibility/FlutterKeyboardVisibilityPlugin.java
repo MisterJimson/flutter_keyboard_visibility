@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import androidx.annotation.NonNull;
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -22,7 +20,7 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
   private boolean isVisible;
 
   @Override
-  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+  public void onAttachedToEngine(FlutterPluginBinding flutterPluginBinding) {
     init(flutterPluginBinding.getBinaryMessenger());
   }
 
@@ -47,12 +45,12 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
   }
 
   @Override
-  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+  public void onDetachedFromEngine(FlutterPluginBinding binding) {
     unregisterListener();
   }
 
   @Override
-  public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+  public void onAttachedToActivity(ActivityPluginBinding binding) {
     listenForKeyboard(binding.getActivity());
   }
 
@@ -62,7 +60,7 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
   }
 
   @Override
-  public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+  public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
     listenForKeyboard(binding.getActivity());
   }
 
