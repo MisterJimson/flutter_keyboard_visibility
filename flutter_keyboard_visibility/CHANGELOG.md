@@ -1,3 +1,7 @@
+## [5.0.0-nullsafety.1] - November 30, 2020
+
+* Remove Android X import and annotations in Android code to reduce possibility of build errors
+
 ## [5.0.0-nullsafety.0] - November 30, 2020
 
 * Migrated to null safety
