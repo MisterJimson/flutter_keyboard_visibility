@@ -1,3 +1,7 @@
+## [4.0.4-beta.0] - February 1, 2021
+
+* Improve Android implementation with WindowInsetsCompat
+
 ## [4.0.3] - February 1, 2021
 
 * Remove Android X import and annotations in Android code to reduce possibility of build errors
