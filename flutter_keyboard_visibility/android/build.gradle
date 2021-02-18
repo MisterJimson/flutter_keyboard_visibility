@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.4'
     }
 }
 
@@ -29,5 +29,8 @@ android {
     }
     lintOptions {
         disable 'InvalidPackage'
+    }
+    dependencies {
+        implementation "androidx.core:core:1.5.0-beta01"
     }
 }

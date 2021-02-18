@@ -1,10 +1,12 @@
 package com.jrai.flutter_keyboard_visibility;
 
 import android.app.Activity;
-import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -14,7 +16,7 @@ import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.PluginRegistry;
 
 
-public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityAware, EventChannel.StreamHandler, ViewTreeObserver.OnGlobalLayoutListener {
+public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityAware, EventChannel.StreamHandler {
   private EventChannel.EventSink eventSink;
   private View mainView;
   private boolean isVisible;
@@ -79,34 +81,25 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
     this.eventSink = null;
   }
 
-  @Override
-  public void onGlobalLayout() {
-    Rect r = new Rect();
-
-    if (mainView != null) {
-      mainView.getWindowVisibleDisplayFrame(r);
-
-      // check if the visible part of the screen is less than 85%
-      // if it is then the keyboard is showing
-      boolean newState = ((double)r.height() / (double)mainView.getRootView().getHeight()) < 0.85;
-
-      if (newState != isVisible) {
-        isVisible = newState;
-        if (eventSink != null) {
-          eventSink.success(isVisible ? 1 : 0);
-        }
-      }
-    }
-  }
 
   private void listenForKeyboard(Activity activity) {
     mainView = activity.<ViewGroup>findViewById(android.R.id.content);
-    mainView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+
+    ViewCompat.setOnApplyWindowInsetsListener(mainView, new OnApplyWindowInsetsListener() {
+      @Override
+      public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+        isVisible = insets.isVisible(WindowInsetsCompat.Type.ime());
+        if (eventSink != null) {
+          eventSink.success(isVisible ? 1 : 0);
+        }
+        return insets;
+      }
+    });
   }
 
   private void unregisterListener() {
     if (mainView != null) {
-      mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+      ViewCompat.setOnApplyWindowInsetsListener(mainView,null);
       mainView = null;
     }
   }
