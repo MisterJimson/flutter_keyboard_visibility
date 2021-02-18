@@ -7,7 +7,7 @@ React to keyboard visibility changes.
 Add the dependency to your pubspec.yaml
 ```yaml
 dependencies:
-  flutter_keyboard_visibility: ^4.0.0
+  flutter_keyboard_visibility: ^4.0.4
 ```
 ## Usage: React to Keyboard Visibility Changes
 ### Option 1: Within your `Widget` tree using a builder
