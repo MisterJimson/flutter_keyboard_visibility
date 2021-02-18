@@ -1,3 +1,7 @@
+## [4.0.4] - February 1, 2021
+
+* Improve Android implementation with WindowInsetsCompat
+
 ## [5.0.0-nullsafety.1] - November 30, 2020
 
 * Remove Android X import and annotations in Android code to reduce possibility of build errors
