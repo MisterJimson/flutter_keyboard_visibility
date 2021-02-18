@@ -1,4 +1,4 @@
-## [4.0.4] - February 1, 2021
+## [5.0.0-nullsafety.2] - February 18, 2021
 
 * Improve Android implementation with WindowInsetsCompat
 
