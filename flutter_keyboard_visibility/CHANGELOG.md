@@ -1,3 +1,8 @@
+## [5.0.0-nullsafety.3] - February 26, 2021
+
+* Fixed onChange notifying the same value multiple times on Android
+* Fixed bug introduced in 4.0.5 that would cause keyboard changes not to be notified
+
 ## [5.0.0-nullsafety.2] - February 18, 2021
 
 * Improve Android implementation with WindowInsetsCompat
@@ -10,6 +15,18 @@
 
 * Migrated to null safety
 * Removed deprecated KeyboardVisibility static access APIs
+
+## [4.0.6] - February 26, 2021
+
+* Fixed bug introduced in 4.0.5 that would cause keyboard changes not to be notified
+
+## [4.0.5] - February 26, 2021
+
+* Fixed onChange notifying the same value multiple times on Android 
+
+## [4.0.4] - February 18, 2021
+
+* Improve Android implementation with WindowInsetsCompat
 
 ## [4.0.3] - February 1, 2021
 
