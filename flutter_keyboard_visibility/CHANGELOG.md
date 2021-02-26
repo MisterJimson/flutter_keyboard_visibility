@@ -1,6 +1,7 @@
-## [5.0.0-nullsafety.3] - February 18, 2021
+## [5.0.0-nullsafety.3] - February 26, 2021
 
-* Fixed onChange notifying the same value multiple times on Android 
+* Fixed onChange notifying the same value multiple times on Android
+* Fixed bug introduced in 4.0.5 that would cause keyboard changes not to be notified
 
 ## [5.0.0-nullsafety.2] - February 18, 2021
 
@@ -14,6 +15,10 @@
 
 * Migrated to null safety
 * Removed deprecated KeyboardVisibility static access APIs
+
+## [4.0.6] - February 26, 2021
+
+* Fixed bug introduced in 4.0.5 that would cause keyboard changes not to be notified
 
 ## [4.0.5] - February 26, 2021
 
