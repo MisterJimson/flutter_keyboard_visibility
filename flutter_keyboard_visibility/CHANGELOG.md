@@ -1,3 +1,7 @@
+## [4.0.6] - February 26, 2021
+
+* Fixed bug introduced in 4.0.5 that would cause keyboard changes not to be notified
+
 ## [4.0.5] - February 26, 2021
 
 * Fixed onChange notifying the same value multiple times on Android 

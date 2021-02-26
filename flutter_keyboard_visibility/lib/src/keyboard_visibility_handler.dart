@@ -47,7 +47,7 @@ class KeyboardVisibilityHandler {
     _testIsVisible = newValue;
 
     // Don't report the same value multiple times
-    if (newValue == isVisible) {
+    if (newValue == _isVisible) {
       return;
     }
 
