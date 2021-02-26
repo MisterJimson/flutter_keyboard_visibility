@@ -44,6 +44,10 @@ class KeyboardVisibilityHandler {
   }
 
   static void _updateValue(bool newValue) {
+    // Don't report the same value multiple times
+    if (newValue == isVisible) {
+      return;
+    }
     _isVisible = newValue;
     _testIsVisible = newValue;
     _onChangeController.add(newValue);
