@@ -1,3 +1,7 @@
+## [4.0.5] - February 26, 2021
+
+* Fixed onChange notifying the same value multiple times on Android 
+
 ## [4.0.4] - February 18, 2021
 
 * Improve Android implementation with WindowInsetsCompat
