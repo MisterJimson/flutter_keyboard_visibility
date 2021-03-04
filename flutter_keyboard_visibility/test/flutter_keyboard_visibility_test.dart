@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
+//ignore: import_of_legacy_library_into_null_safe
 import 'package:mockito/mockito.dart';
 
 class MockKeyboardVisibilityController extends Mock
@@ -20,7 +21,7 @@ void main() {
 
       // Build a Widget tree and query KeyboardVisibilityProvider
       // for the visibility of the keyboard.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityProvider(
@@ -50,7 +51,7 @@ void main() {
 
       // Build a Widget tree and query KeyboardVisibilityProvider
       // for the visibility of the keyboard.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityProvider(
@@ -80,7 +81,7 @@ void main() {
       when(mockController.isVisible).thenAnswer((_) => true);
 
       // Build a Widget tree with a KeyboardVisibilityProvider.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityProvider(
@@ -123,7 +124,7 @@ void main() {
 
       // Build a Widget tree and query KeyboardVisibilityBuilder
       // for the visibility of the keyboard.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityBuilder(
@@ -150,7 +151,7 @@ void main() {
 
       // Build a Widget tree and query KeyboardVisibilityBuilder
       // for the visibility of the keyboard.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityBuilder(
@@ -177,7 +178,7 @@ void main() {
       when(mockController.isVisible).thenAnswer((_) => true);
 
       // Build a Widget tree with a KeyboardVisibilityBuilder.
-      bool isKeyboardVisible;
+      bool? isKeyboardVisible;
 
       await tester.pumpWidget(
         KeyboardVisibilityBuilder(

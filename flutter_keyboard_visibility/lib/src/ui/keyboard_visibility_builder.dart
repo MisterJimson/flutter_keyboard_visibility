@@ -6,16 +6,17 @@ class KeyboardVisibilityBuilder extends StatelessWidget {
   /// Optional: pass in a controller you already have created. This is useful
   /// for testing, as you can pass in a mock instance. If no controller is
   /// passed in, one will be created automatically.
-  final KeyboardVisibilityController controller;
+  final KeyboardVisibilityController? controller;
 
   KeyboardVisibilityController get _controller =>
       controller ?? KeyboardVisibilityController();
 
-  const KeyboardVisibilityBuilder({Key key, this.builder, this.controller})
+  const KeyboardVisibilityBuilder({Key? key, required this.builder, this.controller})
       : super(key: key);
 
   /// A builder method that exposes if the native keyboard is visible.
-  final Widget Function(BuildContext, bool isKeyboardVisible) builder;
+  final Widget Function(
+      BuildContext, bool isKeyboardVisible) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,11 @@ class KeyboardVisibilityBuilder extends StatelessWidget {
       stream: _controller.onChange,
       initialData: _controller.isVisible,
       builder: (context, snapshot) {
-        final isKeyboardVisible = snapshot.data;
-
-        return builder(context, isKeyboardVisible);
+        if (snapshot.data != null) {
+          return builder(context, snapshot.data!);
+        } else {
+          return builder(context, false);
+        }
       },
     );
   }

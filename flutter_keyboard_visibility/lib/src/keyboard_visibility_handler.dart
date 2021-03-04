@@ -31,7 +31,7 @@ class KeyboardVisibilityHandler {
   /// Fake representation of whether or not the keyboard is visible
   /// for testing purposes. When this value is non-null, it will be
   /// reported exclusively by the `isVisible` getter.
-  static bool _testIsVisible;
+  static bool? _testIsVisible;
 
   /// Forces `KeyboardVisibility` to report `isKeyboardVisible`
   /// for testing purposes.

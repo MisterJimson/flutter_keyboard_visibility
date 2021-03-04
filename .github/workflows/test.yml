@@ -24,12 +24,8 @@ jobs:
         working-directory: ./flutter_keyboard_visibility/example
       - run: flutter pub get
         working-directory: ./flutter_keyboard_visibility/example_old
-      - run: flutter test
+      - run: flutter test --no-sound-null-safety
         working-directory: ./flutter_keyboard_visibility
-      - run: flutter test
-        working-directory: ./flutter_keyboard_visibility/example
-      - run: flutter test
-        working-directory: ./flutter_keyboard_visibility/example_old
 
   lint:
     name: Lint
