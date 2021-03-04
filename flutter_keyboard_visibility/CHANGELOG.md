@@ -1,3 +1,7 @@
+## [5.0.0] - March 4, 2021
+
+* Updated dependencies & release stable null safe version 
+
 ## [5.0.0-nullsafety.3] - February 26, 2021
 
 * Fixed onChange notifying the same value multiple times on Android
