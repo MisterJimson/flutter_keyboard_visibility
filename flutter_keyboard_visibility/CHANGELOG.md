@@ -1,3 +1,9 @@
+## [5.0.1] - April 16, 2021
+
+* Updated Android target/compile SDK versions to 30
+* Updated Android gradle build tools to 3.6.4
+* Updated AndroidX Core to 1.5.0-rc01
+
 ## [5.0.0] - March 4, 2021
 
 * Updated dependencies & release stable null safe version 
