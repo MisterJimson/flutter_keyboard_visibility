@@ -1,5 +1,6 @@
 # Flutter Keyboard Visibility
 [![pub package](https://img.shields.io/pub/v/flutter_keyboard_visibility.svg?label=flutter_keyboard_visibility&color=blue)](https://pub.dev/packages/flutter_keyboard_visibility)
+[![codecov](https://codecov.io/gh/MisterJimson/flutter_keyboard_visibility/branch/master/graph/badge.svg)](https://codecov.io/gh/MisterJimson/flutter_keyboard_visibility)
 
 React to keyboard visibility changes.
 
