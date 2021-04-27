@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -202,6 +203,43 @@ void main() {
       // Verify that our descendant rebuilt itself, and received the
       // updated visibility of the keyboard.
       expect(isKeyboardVisible, false);
+    });
+  });
+
+  group('KeyboardDismissOnTap', () {
+    testWidgets('It removes focus when tapped', (WidgetTester tester) async {
+      var focusNode = FocusNode();
+      await tester.pumpWidget(
+        MaterialApp(
+          home: KeyboardDismissOnTap(
+            child: Material(
+              child: Column(
+                children: [
+                  SizedBox(
+                    key: Key('box'),
+                    height: 100,
+                  ),
+                  TextField(
+                    focusNode: focusNode,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // TextField starts unfocused
+      expect(focusNode.hasFocus, false);
+
+      // Focus TextField
+      focusNode.requestFocus();
+      await tester.pump();
+      expect(focusNode.hasFocus, true);
+
+      // Tapping within KeyboardDismissOnTap removes focus
+      await tester.tap(find.byKey(Key('box')));
+      expect(focusNode.hasFocus, false);
     });
   });
 }
