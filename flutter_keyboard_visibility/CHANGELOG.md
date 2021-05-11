@@ -1,3 +1,7 @@
+## [5.0.2] - April 16, 2021
+
+* Updated documentation
+
 ## [5.0.1] - April 16, 2021
 
 * Updated Android target/compile SDK versions to 30
