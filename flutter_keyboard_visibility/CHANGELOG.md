@@ -1,3 +1,8 @@
+## [5.0.3] - July 20, 2021
+
+* Updated documentation
+* Reverted the change made in 4.0.4 that changed how keyboard visibility is done on Android
+
 ## [5.0.2] - April 16, 2021
 
 * Updated documentation
