@@ -21,4 +21,7 @@ class KeyboardVisibilityController {
   Stream<bool> get onChange => KeyboardVisibilityHandler.onChange;
 
   bool get isVisible => KeyboardVisibilityHandler.isVisible;
+
+  void setVisibilityForTesting(bool isKeyboardVisible) =>
+      KeyboardVisibilityHandler.setVisibilityForTesting(isKeyboardVisible);
 }
