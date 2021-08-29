@@ -4,20 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 //ignore: import_of_legacy_library_into_null_safe
 import 'package:mockito/mockito.dart';
 
-class MockKeyboardVisibilityController extends Mock
-    implements KeyboardVisibilityController {}
+class MockKeyboardVisibilityController extends Mock implements KeyboardVisibilityController {}
 
 void main() {
   group('KeyboardVisibilityProvider', () {
-    testWidgets('It reports true when the keyboard is visible',
-        (WidgetTester tester) async {
+    testWidgets('It reports true when the keyboard is visible', (WidgetTester tester) async {
       // Pretend that the keyboard is visible.
       var mockController = MockKeyboardVisibilityController();
-      when(mockController.onChange)
-          .thenAnswer((_) => Stream.fromIterable([true]));
+      when(mockController.onChange).thenAnswer((_) => Stream.fromIterable([true]));
       when(mockController.isVisible).thenAnswer((_) => true);
 
       // Build a Widget tree and query KeyboardVisibilityProvider
@@ -29,8 +27,7 @@ void main() {
           controller: mockController,
           child: Builder(
             builder: (BuildContext context) {
-              isKeyboardVisible =
-                  KeyboardVisibilityProvider.isKeyboardVisible(context);
+              isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
               return SizedBox();
             },
           ),
@@ -42,12 +39,10 @@ void main() {
       expect(isKeyboardVisible, true);
     });
 
-    testWidgets('It reports false when the keyboard is NOT visible',
-        (WidgetTester tester) async {
+    testWidgets('It reports false when the keyboard is NOT visible', (WidgetTester tester) async {
       // Pretend that the keyboard is hidden.
       var mockController = MockKeyboardVisibilityController();
-      when(mockController.onChange)
-          .thenAnswer((_) => Stream.fromIterable([false]));
+      when(mockController.onChange).thenAnswer((_) => Stream.fromIterable([false]));
       when(mockController.isVisible).thenAnswer((_) => false);
 
       // Build a Widget tree and query KeyboardVisibilityProvider
@@ -59,8 +54,7 @@ void main() {
           controller: mockController,
           child: Builder(
             builder: (BuildContext context) {
-              isKeyboardVisible =
-                  KeyboardVisibilityProvider.isKeyboardVisible(context);
+              isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
               return SizedBox();
             },
           ),
@@ -72,8 +66,7 @@ void main() {
       expect(isKeyboardVisible, false);
     });
 
-    testWidgets('It rebuilds when the keyboard visibility changes',
-        (WidgetTester tester) async {
+    testWidgets('It rebuilds when the keyboard visibility changes', (WidgetTester tester) async {
       // Pretend that the keyboard is visible.
       var mockController = MockKeyboardVisibilityController();
       var streamController = StreamController<bool>();
@@ -89,8 +82,7 @@ void main() {
           controller: mockController,
           child: Builder(
             builder: (BuildContext context) {
-              isKeyboardVisible =
-                  KeyboardVisibilityProvider.isKeyboardVisible(context);
+              isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
               return SizedBox();
             },
           ),
@@ -115,12 +107,10 @@ void main() {
   });
 
   group('KeyboardVisibilityBuilder', () {
-    testWidgets('It reports true when the keyboard is visible',
-        (WidgetTester tester) async {
+    testWidgets('It reports true when the keyboard is visible', (WidgetTester tester) async {
       // Pretend that the keyboard is visible.
       var mockController = MockKeyboardVisibilityController();
-      when(mockController.onChange)
-          .thenAnswer((_) => Stream.fromIterable([true]));
+      when(mockController.onChange).thenAnswer((_) => Stream.fromIterable([true]));
       when(mockController.isVisible).thenAnswer((_) => true);
 
       // Build a Widget tree and query KeyboardVisibilityBuilder
@@ -142,12 +132,10 @@ void main() {
       expect(isKeyboardVisible, true);
     });
 
-    testWidgets('It reports false when the keyboard is NOT visible',
-        (WidgetTester tester) async {
+    testWidgets('It reports false when the keyboard is NOT visible', (WidgetTester tester) async {
       // Pretend that the keyboard is hidden.
       var mockController = MockKeyboardVisibilityController();
-      when(mockController.onChange)
-          .thenAnswer((_) => Stream.fromIterable([false]));
+      when(mockController.onChange).thenAnswer((_) => Stream.fromIterable([false]));
       when(mockController.isVisible).thenAnswer((_) => false);
 
       // Build a Widget tree and query KeyboardVisibilityBuilder
@@ -169,8 +157,7 @@ void main() {
       expect(isKeyboardVisible, false);
     });
 
-    testWidgets('It rebuilds when the keyboard visibility changes',
-        (WidgetTester tester) async {
+    testWidgets('It rebuilds when the keyboard visibility changes', (WidgetTester tester) async {
       // Pretend that the keyboard is visible.
       var mockController = MockKeyboardVisibilityController();
       var streamController = StreamController<bool>();
@@ -240,6 +227,77 @@ void main() {
       // Tapping within KeyboardDismissOnTap removes focus
       await tester.tap(find.byKey(Key('box')));
       expect(focusNode.hasFocus, false);
+    });
+
+    testWidgets('It removes focus when dragged', (WidgetTester tester) async {
+      var focusNode = FocusNode();
+
+      final controller = FixedExtentScrollController(initialItem: 1);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Material(
+            child: KeyboardDismissOnTap(
+              dismissOnDrag: true,
+              child: ListWheelScrollView(
+                controller: controller,
+                itemExtent: 100.0,
+                physics: const FixedExtentScrollPhysics(),
+                children: [
+                  TextField(focusNode: focusNode),
+                  ...List<Widget>.generate(20, (int index) => const Placeholder()),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // TextField starts unfocused
+      expect(focusNode.hasFocus, false);
+
+      // Focus TextField
+      focusNode.requestFocus();
+      await tester.pump();
+      expect(focusNode.hasFocus, true);
+      // Dragging within KeyboardDismissOnTap removes focus
+      await tester.fling(find.byType(ListWheelScrollView), const Offset(567.0, 20.0), 128.0);
+
+      expect(focusNode.hasFocus, false);
+    });
+    testWidgets('It does not remove focus when dragged and dissmisOnDrag is false', (WidgetTester tester) async {
+      var focusNode = FocusNode();
+
+      final controller = FixedExtentScrollController(initialItem: 1);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Material(
+            child: KeyboardDismissOnTap(
+              dismissOnDrag: false,
+              child: ListWheelScrollView(
+                controller: controller,
+                itemExtent: 100.0,
+                physics: const FixedExtentScrollPhysics(),
+                children: [
+                  TextField(focusNode: focusNode),
+                  ...List<Widget>.generate(20, (int index) => const Placeholder()),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // TextField starts unfocused
+      expect(focusNode.hasFocus, false);
+
+      // Focus TextField
+      focusNode.requestFocus();
+      await tester.pump();
+      expect(focusNode.hasFocus, true);
+      // Dragging within KeyboardDismissOnTap does not remove focus
+      await tester.fling(find.byType(ListWheelScrollView), const Offset(567.0, 20.0), 128.0);
+
+      expect(focusNode.hasFocus, true);
     });
   });
 }
