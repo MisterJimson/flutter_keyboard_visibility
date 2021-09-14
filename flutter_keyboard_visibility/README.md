@@ -55,6 +55,9 @@ Query and/or subscribe to keyboard visibility directly with the
 
 ```dart
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'dart:async';
+
+late StreamSubscription<bool> keyboardSubscription;
 
 @override
 void initState() {
@@ -65,9 +68,15 @@ void initState() {
   print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
 
   // Subscribe
-  keyboardVisibilityController.onChange.listen((bool visible) {
-    print('Keyboard visibility update. Is visible: ${visible}');
+  keyboardSubscription = keyboardVisibilityController.onChange.listen((bool visible) {
+    print('Keyboard visibility update. Is visible: $visible');
   });
+}
+
+@override
+void dispose() {
+  keyboardSubscription.cancel();
+  super.dispose();
 }
 ```
 ## Usage: Dismiss keyboard on tap
