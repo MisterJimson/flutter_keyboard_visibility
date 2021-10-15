@@ -1,3 +1,8 @@
+## [5.1.0] - October 15, 2021
+
+* Removed Android v1 Embedding Support. If you created your Android project before Flutter 1.12 you
+may need to recreate or migrate. https://flutter.dev/docs/development/packages-and-plugins/plugin-api-migration
+
 ## [5.0.3] - July 20, 2021
 
 * Updated documentation
