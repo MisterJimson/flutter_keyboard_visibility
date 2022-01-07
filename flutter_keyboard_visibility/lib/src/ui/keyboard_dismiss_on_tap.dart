@@ -24,10 +24,11 @@ class KeyboardDismissOnTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return Listener(
+      onPointerDown: (_) {
         _hideKeyboard(context);
       },
+      behavior: HitTestBehavior.translucent,
       child: child,
     );
   }
