@@ -24,7 +24,7 @@ jobs:
         working-directory: ./flutter_keyboard_visibility/example
       - run: flutter test --coverage
         working-directory: ./flutter_keyboard_visibility
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./flutter_keyboard_visibility/coverage/lcov.info
