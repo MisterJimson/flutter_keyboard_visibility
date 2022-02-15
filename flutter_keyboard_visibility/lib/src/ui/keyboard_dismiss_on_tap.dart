@@ -10,7 +10,7 @@ class KeyboardDismissOnTap extends StatefulWidget {
   /// Determines whether taps captures by other [Widget]s should dismiss the
   /// keyboard. Defaults to false.
   ///
-  /// A common example of this is have a button in your UI. By default buttons
+  /// A common example of this is buttons. By default buttons
   /// capture the tap event and the keyboard won't be dismissed.
   final bool dismissOnCapturedTaps;
 
@@ -25,6 +25,8 @@ class KeyboardDismissOnTap extends StatefulWidget {
   @override
   State<KeyboardDismissOnTap> createState() => _KeyboardDismissOnTapState();
 
+  /// Used internally by [IgnoreKeyboardDismiss] to notify this Widget to ignore
+  /// the next tap.
   static void ignoreNextTap(BuildContext context) {
     context
         .dependOnInheritedWidgetOfExactType<
@@ -71,11 +73,15 @@ class _KeyboardDismissOnTapState extends State<KeyboardDismissOnTap> {
   }
 }
 
-/// Prevent click on child to remove focus
+/// Used to ignore keyboard dismiss requests for a specific Widget or Widget
+/// tree.
 class IgnoreKeyboardDismiss extends StatelessWidget {
-  final Widget? child;
+  final Widget child;
 
-  const IgnoreKeyboardDismiss({Key? key, this.child}) : super(key: key);
+  const IgnoreKeyboardDismiss({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +95,8 @@ class IgnoreKeyboardDismiss extends StatelessWidget {
   }
 }
 
+/// Used internally by [KeyboardDismissOnTap] and [IgnoreKeyboardDismiss] to
+/// communicate ignore requests.
 class _KeyboardDismissOnTapInheritedWidget extends InheritedWidget {
   _KeyboardDismissOnTapInheritedWidget({
     Key? key,
