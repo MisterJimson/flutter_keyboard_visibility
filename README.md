@@ -59,6 +59,9 @@ Query and/or subscribe to keyboard visibility directly with the
 
 ```dart
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'dart:async';
+
+late StreamSubscription<bool> keyboardSubscription;
 
 @override
 void initState() {
@@ -69,9 +72,15 @@ void initState() {
   print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
 
   // Subscribe
-  keyboardVisibilityController.onChange.listen((bool visible) {
-    print('Keyboard visibility update. Is visible: ${visible}');
+  keyboardSubscription = keyboardVisibilityController.onChange.listen((bool visible) {
+    print('Keyboard visibility update. Is visible: $visible');
   });
+}
+
+@override
+void dispose() {
+  keyboardSubscription.cancel();
+  super.dispose();
 }
 ```
 ## Usage: Dismiss keyboard on tap
@@ -87,6 +96,20 @@ Widget build(BuildContext context) {
   );
 }
 ```
+By default `KeyboardDismissOnTap` will only dismiss taps not captured by other interactive `Widget`s, like buttons. If you would like to dismiss the keyboard for any tap, including taps on interactive `Widget`s, set `dismissOnCapturedTaps` to true.
+```dart
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
+// Somewhere near the top of your tree...
+@override
+Widget build(BuildContext context) {
+  return KeyboardDismissOnTap(
+    dismissOnCapturedTaps: true,
+    child: MyDemoPage(),
+  );
+}
+```
+The `IgnoreKeyboardDismiss` `Widget` can be used to further refine which taps do and do not dismiss the keyboard. Checkout the example app for more detail.
 ## Testing
 Call `KeyboardVisibility.setVisibilityForTesting(value)` to set a custom value to use during `flutter test`
 ```dart
