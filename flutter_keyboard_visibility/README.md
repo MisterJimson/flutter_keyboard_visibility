@@ -4,6 +4,10 @@
 
 React to keyboard visibility changes.
 
+### Note about Flutter Web support
+
+Web support is an open issue [here](https://github.com/MisterJimson/flutter_keyboard_visibility/issues/10). Currently this library will just return `false` for keyboard visibility on web.
+
 ## Install
 [Install the package](https://pub.dev/packages/flutter_keyboard_visibility/install)
 ## Usage: React to Keyboard Visibility Changes
@@ -16,11 +20,11 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 @override
 Widget build(BuildContext context) {
   return KeyboardVisibilityBuilder(
-    builder: (context, isKeyboardVisible) {
-      return Text(
-        'The keyboard is: ${isKeyboardVisible ? 'VISIBLE' : 'NOT VISIBLE'}',
-      );
-    }
+      builder: (context, isKeyboardVisible) {
+        return Text(
+          'The keyboard is: ${isKeyboardVisible ? 'VISIBLE' : 'NOT VISIBLE'}',
+        );
+      }
   );
 ```
 ### Option 2: Within your `Widget` tree using a provider
@@ -92,6 +96,20 @@ Widget build(BuildContext context) {
   );
 }
 ```
+By default `KeyboardDismissOnTap` will only dismiss taps not captured by other interactive `Widget`s, like buttons. If you would like to dismiss the keyboard for any tap, including taps on interactive `Widget`s, set `dismissOnCapturedTaps` to true.
+```dart
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
+// Somewhere near the top of your tree...
+@override
+Widget build(BuildContext context) {
+  return KeyboardDismissOnTap(
+    dismissOnCapturedTaps: true,
+    child: MyDemoPage(),
+  );
+}
+```
+The `IgnoreKeyboardDismiss` `Widget` can be used to further refine which taps do and do not dismiss the keyboard. Checkout the example app for more detail.
 ## Testing
 Call `KeyboardVisibility.setVisibilityForTesting(value)` to set a custom value to use during `flutter test`
 ```dart
