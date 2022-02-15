@@ -41,7 +41,7 @@ class KeyboardDismissDemo extends StatelessWidget {
                 ),
               ),
               KeyboardDismissOnTap(
-                ignoreGestureDetectors: false,
+                dismissOnCapturedTaps: true,
                 child: Container(
                   height: 80,
                   width: double.infinity,
@@ -53,6 +53,27 @@ class KeyboardDismissDemo extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         child: Text('Button'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              KeyboardDismissOnTap(
+                child: Container(
+                  height: 80,
+                  width: double.infinity,
+                  color: Colors.orange,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Orange dismisses, black does not'),
+                      IgnoreKeyboardDismiss(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 4),
+                          height: 40,
+                          width: 40,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),

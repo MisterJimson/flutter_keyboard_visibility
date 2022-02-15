@@ -6,54 +6,68 @@ import 'package:flutter/widgets.dart';
 /// Place this widget somewhere near the top of your widget
 /// tree and when the user taps outside of a focused widget,
 /// the focus will be removed and the keyboard will be hidden.
-class KeyboardDismissOnTap extends StatelessWidget {
-  /// Used to control if clicking a widget inheriting GestureDetector will
-  /// dismiss the keyboard or not
+class KeyboardDismissOnTap extends StatefulWidget {
+  /// Determines whether taps captures by other [Widget]s should dismiss the
+  /// keyboard. Defaults to false.
   ///
-  /// By default GestureDetectors are ignored
-  final bool ignoreGestureDetectors;
-
-  /// This is used to control if the next dismiss is allowed
-  static bool _dismissible = true;
+  /// A common example of this is have a button in your UI. By default buttons
+  /// capture the tap event and the keyboard won't be dismissed.
+  final bool dismissOnCapturedTaps;
 
   const KeyboardDismissOnTap({
     Key? key,
     required this.child,
-    this.ignoreGestureDetectors = true,
+    this.dismissOnCapturedTaps = false,
   }) : super(key: key);
 
   final Widget child;
 
-  void _hideKeyboard(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      if (!_dismissible) {
-        _dismissible = true;
-      } else {
-        final currentFocus = FocusScope.of(context);
+  @override
+  State<KeyboardDismissOnTap> createState() => _KeyboardDismissOnTapState();
 
-        if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        }
+  static void ignoreNextTap(BuildContext context) {
+    context
+        .dependOnInheritedWidgetOfExactType<
+            _KeyboardDismissOnTapInheritedWidget>()!
+        .ignoreNextTap();
+  }
+}
+
+class _KeyboardDismissOnTapState extends State<KeyboardDismissOnTap> {
+  bool ignoreNextTap = false;
+
+  void _hideKeyboard(BuildContext context) {
+    if (ignoreNextTap) {
+      ignoreNextTap = false;
+    } else {
+      final currentFocus = FocusScope.of(context);
+      if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
+        FocusManager.instance.primaryFocus?.unfocus();
       }
-    });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ignoreGestureDetectors
-        ? GestureDetector(
-            onTap: () {
-              _hideKeyboard(context);
-            },
-            child: child,
-          )
-        : Listener(
-            onPointerUp: (_) {
-              _hideKeyboard(context);
-            },
-            behavior: HitTestBehavior.translucent,
-            child: child,
-          );
+    return _KeyboardDismissOnTapInheritedWidget(
+      ignoreNextTap: () {
+        ignoreNextTap = true;
+      },
+      child: !widget.dismissOnCapturedTaps
+          ? GestureDetector(
+              onTap: () {
+                _hideKeyboard(context);
+              },
+              child: widget.child,
+            )
+          : Listener(
+              onPointerUp: (_) {
+                _hideKeyboard(context);
+              },
+              behavior: HitTestBehavior.translucent,
+              child: widget.child,
+            ),
+    );
   }
 }
 
@@ -67,10 +81,25 @@ class IgnoreKeyboardDismiss extends StatelessWidget {
   Widget build(BuildContext context) {
     return Listener(
       onPointerUp: (_) {
-        KeyboardDismissOnTap._dismissible = false;
+        KeyboardDismissOnTap.ignoreNextTap(context);
       },
       behavior: HitTestBehavior.translucent,
       child: child,
     );
+  }
+}
+
+class _KeyboardDismissOnTapInheritedWidget extends InheritedWidget {
+  _KeyboardDismissOnTapInheritedWidget({
+    Key? key,
+    required this.ignoreNextTap,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+  final VoidCallback ignoreNextTap;
+
+  @override
+  bool updateShouldNotify(_KeyboardDismissOnTapInheritedWidget oldWidget) {
+    return false;
   }
 }
