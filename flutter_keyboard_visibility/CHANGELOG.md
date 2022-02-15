@@ -1,3 +1,15 @@
+## [5.2.0] - February 15, 2022
+Thanks to Andrflor for help with this feature release
+
+* Added `dismissOnCapturedTaps` option to KeyboardDismissOnTap
+* Added `IgnoreKeyboardDismiss` Widget
+
+## [5.1.1] - January 13, 2022
+Thanks to jpeiffer for this fix
+
+* Updated Android tooling versions
+* Replaced jcenter with mavenCentral
+
 ## [5.1.0] - October 15, 2021
 
 * Removed Android v1 Embedding Support. If you created your Android project before Flutter 1.12 you
