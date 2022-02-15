@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
-//ignore: import_of_legacy_library_into_null_safe
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockKeyboardVisibilityController extends Mock
-    implements KeyboardVisibilityController {}
+import 'flutter_keyboard_visibility_test.mocks.dart';
 
+@GenerateMocks([KeyboardVisibilityController])
 void main() {
   group('KeyboardVisibilityProvider', () {
     testWidgets('It reports true when the keyboard is visible',
@@ -206,6 +205,8 @@ void main() {
     });
   });
 
+  // TODO this test complains when ran because SizedBox is not hit testable
+  // since KeyboardDismissOnTap captures the hit with its GestureDetector
   group('KeyboardDismissOnTap', () {
     testWidgets('It removes focus when tapped', (WidgetTester tester) async {
       var focusNode = FocusNode();
@@ -218,6 +219,7 @@ void main() {
                   SizedBox(
                     key: Key('box'),
                     height: 100,
+                    width: 100,
                   ),
                   TextField(
                     focusNode: focusNode,
