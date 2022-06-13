@@ -1,3 +1,7 @@
+## [5.3.0] - June 13, 2022
+
+* Updated testing docs and made minor changes to allow to easier testing. See readme for details.
+
 ## [5.2.0] - February 15, 2022
 Thanks to Andrflor for help with this feature release
 
