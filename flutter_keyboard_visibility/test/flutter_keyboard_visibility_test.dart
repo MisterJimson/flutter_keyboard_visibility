@@ -244,4 +244,59 @@ void main() {
       expect(focusNode.hasFocus, false);
     });
   });
+
+  group('KeyboardVisibilityTesting', () {
+    testWidgets(
+        'setVisibilityForTesting allows overriding of value to true for testing',
+        (WidgetTester tester) async {
+      // Pretend that the keyboard is visible.
+      KeyboardVisibilityTesting.setVisibilityForTesting(true);
+
+      // Build a Widget tree and query KeyboardVisibilityProvider
+      // for the visibility of the keyboard.
+      bool? isKeyboardVisible;
+
+      await tester.pumpWidget(
+        KeyboardVisibilityProvider(
+          child: Builder(
+            builder: (BuildContext context) {
+              isKeyboardVisible =
+                  KeyboardVisibilityProvider.isKeyboardVisible(context);
+              return SizedBox();
+            },
+          ),
+        ),
+      );
+
+      // Verify that KeyboardVisibilityProvider reported that the
+      // keyboard is visible.
+      expect(isKeyboardVisible, true);
+    });
+    testWidgets(
+        'setVisibilityForTesting allows overriding of value to false for testing',
+        (WidgetTester tester) async {
+      // Pretend that the keyboard is not visible.
+      KeyboardVisibilityTesting.setVisibilityForTesting(false);
+
+      // Build a Widget tree and query KeyboardVisibilityProvider
+      // for the visibility of the keyboard.
+      bool? isKeyboardVisible;
+
+      await tester.pumpWidget(
+        KeyboardVisibilityProvider(
+          child: Builder(
+            builder: (BuildContext context) {
+              isKeyboardVisible =
+                  KeyboardVisibilityProvider.isKeyboardVisible(context);
+              return SizedBox();
+            },
+          ),
+        ),
+      );
+
+      // Verify that KeyboardVisibilityProvider reported that the
+      // keyboard is visible.
+      expect(isKeyboardVisible, false);
+    });
+  });
 }

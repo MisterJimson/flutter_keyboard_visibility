@@ -11,12 +11,14 @@ class KeyboardVisibilityBuilder extends StatelessWidget {
   KeyboardVisibilityController get _controller =>
       controller ?? KeyboardVisibilityController();
 
-  const KeyboardVisibilityBuilder({Key? key, required this.builder, this.controller})
-      : super(key: key);
+  const KeyboardVisibilityBuilder({
+    Key? key,
+    required this.builder,
+    this.controller,
+  }) : super(key: key);
 
   /// A builder method that exposes if the native keyboard is visible.
-  final Widget Function(
-      BuildContext, bool isKeyboardVisible) builder;
+  final Widget Function(BuildContext, bool isKeyboardVisible) builder;
 
   @override
   Widget build(BuildContext context) {
