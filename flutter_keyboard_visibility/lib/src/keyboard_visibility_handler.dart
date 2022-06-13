@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter_keyboard_visibility_platform_interface/flutter_keyboard_visibility_platform_interface.dart';
 
 /// Provides access to the current keyboard visibility state and emits
@@ -33,12 +34,11 @@ class KeyboardVisibilityHandler {
   /// reported exclusively by the `isVisible` getter.
   static bool? _testIsVisible;
 
-  /// Forces `KeyboardVisibility` to report `isKeyboardVisible`
+  /// Forces `KeyboardVisibilityHandler` to report `isKeyboardVisible`
   /// for testing purposes.
   ///
-  /// `KeyboardVisibility` will continue reporting `isKeyboardVisible`
-  /// until the value is changed again with this method. To stop
-  /// using fake values altogether, set `isKeyboardVisible` to null.
+  /// `KeyboardVisibilityHandler` will continue reporting `isKeyboardVisible`
+  /// until the value is changed again with this method.
   static void setVisibilityForTesting(bool isKeyboardVisible) {
     _updateValue(isKeyboardVisible);
   }

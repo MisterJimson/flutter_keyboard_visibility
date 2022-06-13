@@ -111,11 +111,47 @@ Widget build(BuildContext context) {
 ```
 The `IgnoreKeyboardDismiss` `Widget` can be used to further refine which taps do and do not dismiss the keyboard. Checkout the example app for more detail.
 ## Testing
-Call `KeyboardVisibility.setVisibilityForTesting(value)` to set a custom value to use during `flutter test`
+### Testing using mocks
+`KeyboardVisibilityProvider` and `KeyboardVisibilityBuilder` accept a `controller` parameter that allow you to mock or replace the logic for reporting keyboard visibility updates.
+```dart
+@GenerateMocks([KeyboardVisibilityController])
+void main() {
+  testWidgets('It reports true when the keyboard is visible', (WidgetTester tester) async {
+    // Pretend that the keyboard is visible.
+    var mockController = MockKeyboardVisibilityController();
+    when(mockController.onChange)
+        .thenAnswer((_) => Stream.fromIterable([true]));
+    when(mockController.isVisible).thenAnswer((_) => true);
+
+    // Build a Widget tree and query KeyboardVisibilityProvider
+    // for the visibility of the keyboard.
+    bool? isKeyboardVisible;
+
+    await tester.pumpWidget(
+      KeyboardVisibilityProvider(
+        controller: mockController,
+        child: Builder(
+          builder: (BuildContext context) {
+            isKeyboardVisible =
+                KeyboardVisibilityProvider.isKeyboardVisible(context);
+            return SizedBox();
+          },
+        ),
+      ),
+    );
+
+    // Verify that KeyboardVisibilityProvider reported that the
+    // keyboard is visible.
+    expect(isKeyboardVisible, true);
+  });
+}
+```
+### Testing with a global override 
+Call `KeyboardVisibilityTesting.setVisibilityForTesting(false);` to set a custom value to use during `flutter test`. This is set globally and will override the standard logic of the native platform.
 ```dart
 void main() {
   testWidgets('My Test', (WidgetTester tester) async {
-    KeyboardVisibility.setVisibilityForTesting(true);
+    KeyboardVisibilityTesting.setVisibilityForTesting(true);
     await tester.pumpWidget(MyApp());
   });
 }
