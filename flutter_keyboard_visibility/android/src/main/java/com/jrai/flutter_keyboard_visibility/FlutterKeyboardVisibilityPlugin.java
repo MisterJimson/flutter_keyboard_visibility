@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import androidx.core.view.WindowInsetsCompat;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -70,9 +71,15 @@ public class FlutterKeyboardVisibilityPlugin implements FlutterPlugin, ActivityA
       Rect r = new Rect();
       mainView.getWindowVisibleDisplayFrame(r);
 
-      // check if the visible part of the screen is less than 85%
-      // if it is then the keyboard is showing
-      boolean newState = ((double)r.height() / (double)mainView.getRootView().getHeight()) < 0.85;
+      boolean newState = false;
+
+      if (android.os.Build.VERSION.SDK_INT >= 30){
+        newState = mainView.getRootWindowInsets().isVisible(WindowInsetsCompat.Type.ime());
+      } else{
+        // check if the visible part of the screen is less than 85%
+        // if it is then the keyboard is showing
+        newState = ((double)r.height() / (double)mainView.getRootView().getHeight()) < 0.85;
+      }
 
       if (newState != isVisible) {
         isVisible = newState;
