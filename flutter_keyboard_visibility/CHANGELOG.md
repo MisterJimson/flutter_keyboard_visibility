@@ -1,3 +1,7 @@
+## [5.3.1] - October 4, 2022
+
+* Add endorsed stubs for Linux, macOS, and Windows.
+
 ## [5.3.0] - June 13, 2022
 
 * Updated testing docs and made minor changes to allow to easier testing. See readme for details.
