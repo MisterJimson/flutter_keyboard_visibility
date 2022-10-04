@@ -13,7 +13,7 @@ flutter:
     implements: flutter_keyboard_visibility
     platforms:
       linux:
-        dartPluginClass: FlutterKeyboardVisibilityPlugin
+        dartPluginClass: FlutterKeyboardVisibilityPluginLinux
 
 dependencies:
   flutter_keyboard_visibility_platform_interface: ^2.0.0

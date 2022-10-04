@@ -2,14 +2,14 @@ import 'package:flutter_keyboard_visibility_platform_interface/flutter_keyboard_
 
 /// The Linux implementation of the [FlutterKeyboardVisibilityPlatform] of the
 /// FlutterKeyboardVisibility plugin.
-class FlutterKeyboardVisibilityPlugin
+class FlutterKeyboardVisibilityPluginLinux
     extends FlutterKeyboardVisibilityPlatform {
 
   /// Factory method that initializes the FlutterKeyboardVisibility plugin
   /// platform with an instance of the plugin for Linux.
   static void registerWith() {
     FlutterKeyboardVisibilityPlatform.instance =
-        FlutterKeyboardVisibilityPlugin();
+        FlutterKeyboardVisibilityPluginLinux();
   }
 
   /// Emits changes to keyboard visibility from the platform. Linux is not
