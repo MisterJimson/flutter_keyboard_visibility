@@ -1,5 +1,5 @@
 # Flutter Keyboard Visibility Web
-Web support for Flutter Keyboard Visibility
+macOS support for Flutter Keyboard Visibility
 
 See the full plugin [here](https://pub.dev/packages/flutter_keyboard_visibility);
 ## Status
