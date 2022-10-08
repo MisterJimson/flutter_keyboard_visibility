@@ -4,9 +4,9 @@
 
 React to keyboard visibility changes.
 
-### Note about Flutter Web support
+### Note about Flutter Web and Desktop support
 
-Web support is an open issue [here](https://github.com/MisterJimson/flutter_keyboard_visibility/issues/10). Currently this library will just return `false` for keyboard visibility on web.
+Web support is an open issue [here](https://github.com/MisterJimson/flutter_keyboard_visibility/issues/10). Currently this library will just return `false` for keyboard visibility on web and desktop.
 
 ## Install
 [Install the package](https://pub.dev/packages/flutter_keyboard_visibility/install)
