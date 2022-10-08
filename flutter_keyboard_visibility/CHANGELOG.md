@@ -1,4 +1,5 @@
-## [5.3.1] - October 4, 2022
+## [5.4.0] - October 4, 2022
+Thanks to cbenhagen for this feature
 
 * Add endorsed stubs for Linux, macOS, and Windows.
 
