@@ -1,4 +1,4 @@
-# Flutter Keyboard Visibility Web
+# Flutter Keyboard Visibility Windows
 Windows support for Flutter Keyboard Visibility
 
 See the full plugin [here](https://pub.dev/packages/flutter_keyboard_visibility);
