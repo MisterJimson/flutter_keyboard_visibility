@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "lint": "turbo run lint",
-    "pubget": "turbo run pubget"
+    "pubget": "turbo run pubget",
+    "test": "turbo run test"
   },
   "workspaces": [
     "./*"

@@ -10,6 +10,11 @@
           "dependsOn": ["pubget"],
           "inputs": ["lib/**/*.dart", "test/**/*.dart"],
           "outputs": []
+        },
+        "test": {
+          "dependsOn": ["pubget"],
+          "inputs": ["lib/**/*.dart", "test/**/*.dart"],
+          "outputs": []
         }
       }
 }

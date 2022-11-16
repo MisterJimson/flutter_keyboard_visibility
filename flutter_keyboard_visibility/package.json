@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "lint": "flutter analyze",
-    "pubget": "flutter pub get"
+    "pubget": "flutter pub get",
+    "test": "flutter test"
   }
 }
