@@ -2,7 +2,7 @@
   "name": "flutter_keyboard_visibility_mono",
   "version": "1.0.0",
   "scripts": {
-    "lint": "turbo run lint --continue",
+    "lint": "turbo run lint",
     "pubget": "turbo run pubget"
   },
   "workspaces": [
