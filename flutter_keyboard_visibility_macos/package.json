@@ -1,0 +1,8 @@
+{
+  "name": "flutter_keyboard_visibility_macos",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "flutter analyze",
+    "pubget": "flutter pub get"
+  }
+}

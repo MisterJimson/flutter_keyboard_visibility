@@ -1,0 +1,14 @@
+{
+  "name": "flutter_keyboard_visibility_mono",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "turbo run lint --continue",
+    "pubget": "turbo run pubget"
+  },
+  "workspaces": [
+    "./*"
+  ],
+  "devDependencies": {
+    "turbo": "^1.6.3"
+  }
+}

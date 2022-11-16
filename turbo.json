@@ -1,0 +1,15 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "pipeline": {
+        "pubget": {
+          "dependsOn": ["^pubget"],
+          "inputs": ["./pubspec.yaml"],
+          "outputs": ["./pubspec.lock"]
+        },
+        "lint": {
+          "dependsOn": ["pubget"],
+          "inputs": ["lib/**/*.dart", "test/**/*.dart"],
+          "outputs": []
+        }
+      }
+}
