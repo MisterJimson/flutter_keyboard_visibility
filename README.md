@@ -3,9 +3,9 @@
 ![ci](https://github.com/MisterJimson/flutter_keyboard_visibility/actions/workflows/test.yml/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/MisterJimson/flutter_keyboard_visibility/branch/master/graph/badge.svg)](https://codecov.io/gh/MisterJimson/flutter_keyboard_visibility)
 
-React to keyboard visibility changes.
+React to keyboard visibility changes. 
 
-### Note about Flutter Web and Desktop support
+### Note about Flutter Web and Desktop support 
 
 Web support is an open issue [here](https://github.com/MisterJimson/flutter_keyboard_visibility/issues/10), desktop support is an open issue [here](https://github.com/MisterJimson/flutter_keyboard_visibility/issues/124). Currently this library will just return `false` for keyboard visibility on web and desktop.
 
@@ -52,8 +52,11 @@ Widget build(BuildContext context) {
   );
 }
 ```
-
+  
+  
+  
 ### Option 3: Direct query and subscription
+
 
 Query and/or subscribe to keyboard visibility directly with the
 `KeyboardVisibilityController` class.
@@ -84,6 +87,8 @@ void dispose() {
   super.dispose();
 }
 ```
+
+
 ## Usage: Dismiss keyboard on tap
 Place a `KeyboardDismissOnTap` near the top of your `Widget` tree. When a user taps outside of the currently focused `Widget`, the `Widget` will drop focus and the keyboard will be dismissed.
 ```dart
