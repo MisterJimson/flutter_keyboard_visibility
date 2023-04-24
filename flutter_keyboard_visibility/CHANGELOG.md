@@ -1,3 +1,7 @@
+## [5.4.1] - March 26, 2023
+
+* Fixed `NSLocationWhenInUseUsageDescription` warning on iOS
+
 ## [5.4.0] - October 4, 2022
 Thanks to cbenhagen for this feature
 
