@@ -1,3 +1,8 @@
+## [5.4.2] - UNRELEASED
+
+* Add compatibility with AGP 8 (Android Gradle Plugin).
+
+
 ## [5.4.1] - March 26, 2023
 
 * Fixed `NSLocationWhenInUseUsageDescription` warning on iOS
