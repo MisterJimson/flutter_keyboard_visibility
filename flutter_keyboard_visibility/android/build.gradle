@@ -32,7 +32,13 @@ android {
     defaultConfig {
         minSdkVersion 16
     }
-    lintOptions {
+
+    lint {
         disable 'InvalidPackage'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
