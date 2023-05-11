@@ -26,6 +26,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    namespace 'com.jrai.flutter_keyboard_visibility_example.example'
+
     compileSdkVersion 31
 
     compileOptions {
