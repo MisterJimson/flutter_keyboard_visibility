@@ -1,6 +1,7 @@
 ## [5.4.2] - UNRELEASED
 
 * Add compatibility with AGP 8 (Android Gradle Plugin).
+* Removed implicit-casts lint warning as it's no longer supported
 
 
 ## [5.4.1] - March 26, 2023
