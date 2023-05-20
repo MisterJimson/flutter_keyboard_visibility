@@ -1,4 +1,4 @@
-## [5.4.3] - May 12, 2023
+## [5.4.3] - May 20, 2023
 Thanks to fabricio-godoi for reporting this issue.
 
 * Fixed compatibility with Gradle 7 Android projects (support for Gradle 8 remains in place)
