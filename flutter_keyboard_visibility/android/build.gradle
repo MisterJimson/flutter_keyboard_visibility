@@ -33,7 +33,7 @@ android {
         minSdkVersion 16
     }
 
-    lint {
+    lintOptions {
         disable 'InvalidPackage'
     }
 
