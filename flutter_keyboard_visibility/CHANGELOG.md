@@ -1,3 +1,6 @@
+## [5.4.4] - Jun 29, 2023
+* Fixed compatibility with Gradle 7 Android projects.
+
 ## [5.4.3] - May 20, 2023
 Thanks to fabricio-godoi for reporting this issue.
 
