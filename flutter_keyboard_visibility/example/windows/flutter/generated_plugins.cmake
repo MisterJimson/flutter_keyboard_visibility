@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  flutter_keyboard_visibility_windows
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
