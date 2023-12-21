@@ -6,5 +6,4 @@
 (cd flutter_keyboard_visibility_windows && flutter analyze)
 (cd flutter_keyboard_visibility && flutter analyze)
 (cd flutter_keyboard_visibility/example && flutter analyze)
-(cd flutter_keyboard_visibility/example_old && flutter analyze)
-(cd flutter_keyboard_visibility && flutter test --no-sound-null-safety --coverage)
+(cd flutter_keyboard_visibility && flutter test --coverage)
