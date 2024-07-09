@@ -13,6 +13,7 @@
 @property (copy, nonatomic) FlutterEventSink flutterEventSink;
 @property (assign, nonatomic) BOOL flutterEventListening;
 @property (assign, nonatomic) BOOL isVisible;
+@property (assign, nonatomic) BOOL isFloating;
 
 @end
 
@@ -36,8 +37,26 @@
     [center addObserver:self selector:@selector(didShow) name:UIKeyboardDidShowNotification object:nil];
     [center addObserver:self selector:@selector(willShow) name:UIKeyboardWillShowNotification object:nil];
 	[center addObserver:self selector:@selector(didHide) name:UIKeyboardWillHideNotification object:nil];
+    [center addObserver:self selector:@selector(didChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
 
     return self;
+}
+
+- (void)didChangeFrame:(NSNotification *)notification
+{
+    NSValue *keyboardFrameValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardFrameValue CGRectValue];
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    
+    if (keyboardFrame.size.width > 0 &&
+        keyboardFrame.size.width < screenBounds.size.width &&
+        keyboardFrame.origin.y < screenBounds.size.height) {
+        self.isFloating = YES;
+        [self didShow];
+    } else if (self.isFloating)  {
+        self.isFloating = NO;
+        [self didHide];
+    }
 }
 
 - (void)didShow
