@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.13.0'
     }
 }
 
@@ -27,10 +27,10 @@ android {
         namespace 'com.jrai.flutter_keyboard_visibility'
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 36
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
 
     lint {
