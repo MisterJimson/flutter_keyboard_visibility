@@ -4,3 +4,6 @@
 !idea/
 .idea/*
 !/.idea/runConfigurations/
+
+
+flutter_keyboard_visibility/example/ios/Flutter/ephemeral/*

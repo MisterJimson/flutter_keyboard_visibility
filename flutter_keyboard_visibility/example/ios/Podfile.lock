@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_keyboard_visibility: 0486dadf8b88700306b906d6521a6f38ca3b33ba
 
-PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+PODFILE CHECKSUM: d85ddc5f90e8c593f9dc16ef40fc88253b4f8f6b
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.16.2
