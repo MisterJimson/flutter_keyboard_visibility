@@ -1,0 +1,30 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+
+  - package-ecosystem: pub
+    directory: /flutter_keyboard_visibility
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+
+  - package-ecosystem: pub
+    directory: /flutter_keyboard_visibility_platform_interface
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+
+  - package-ecosystem: pub
+    directory: /flutter_keyboard_visibility_web
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies

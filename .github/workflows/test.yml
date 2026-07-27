@@ -1,55 +1,159 @@
-name: Test
+name: CI
+
 on:
   push:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_CHANNEL: stable
 
 jobs:
-  test:
-    name: Test
+  analyze:
+    name: Analyze (${{ matrix.package }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - flutter_keyboard_visibility_platform_interface
+          - flutter_keyboard_visibility_web
+          - flutter_keyboard_visibility_linux
+          - flutter_keyboard_visibility_macos
+          - flutter_keyboard_visibility_windows
+          - flutter_keyboard_visibility
+          - flutter_keyboard_visibility/example
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
       - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility_platform_interface
-      - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility_web
-      - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility
-      - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility/example
-      - run: flutter test --coverage
-        working-directory: ./flutter_keyboard_visibility
-      - uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./flutter_keyboard_visibility/coverage/lcov.info
+        working-directory: ${{ matrix.package }}
+      - run: dart format --output=none --set-exit-if-changed .
+        working-directory: ${{ matrix.package }}
+      - run: flutter analyze
+        working-directory: ${{ matrix.package }}
 
-  lint:
-    name: Lint
+  test:
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
       - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility_platform_interface
+        working-directory: flutter_keyboard_visibility
+      - run: flutter test --coverage
+        working-directory: flutter_keyboard_visibility
+      - uses: codecov/codecov-action@v5
+        with:
+          files: flutter_keyboard_visibility/coverage/lcov.info
+          fail_ci_if_error: false
+
+  android:
+    name: Android example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
       - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility_web
+        working-directory: flutter_keyboard_visibility/example
+      - run: flutter build apk --debug
+        working-directory: flutter_keyboard_visibility/example
+
+  web:
+    name: Web (${{ matrix.renderer }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        renderer:
+          - javascript
+          - wasm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
       - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility
+        working-directory: flutter_keyboard_visibility/example
+      - name: Build JavaScript
+        if: matrix.renderer == 'javascript'
+        run: flutter build web
+        working-directory: flutter_keyboard_visibility/example
+      - name: Build Wasm
+        if: matrix.renderer == 'wasm'
+        run: flutter build web --wasm
+        working-directory: flutter_keyboard_visibility/example
+
+  apple:
+    name: ${{ matrix.platform }} example
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - ios
+          - macos
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
       - run: flutter pub get
-        working-directory: ./flutter_keyboard_visibility/example
-      - run: flutter analyze
-        working-directory: ./flutter_keyboard_visibility_platform_interface
-      - run: flutter analyze
-        working-directory: ./flutter_keyboard_visibility_web
-      - run: flutter analyze
-        working-directory: ./flutter_keyboard_visibility
-      - run: flutter analyze
-        working-directory: ./flutter_keyboard_visibility/example
+        working-directory: flutter_keyboard_visibility/example
+      - name: Build iOS
+        if: matrix.platform == 'ios'
+        run: flutter build ios --debug --no-codesign
+        working-directory: flutter_keyboard_visibility/example
+      - name: Build macOS
+        if: matrix.platform == 'macos'
+        run: flutter build macos --debug
+        working-directory: flutter_keyboard_visibility/example
+
+  publish-dry-run:
+    name: Publish dry run (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - flutter_keyboard_visibility_platform_interface
+          - flutter_keyboard_visibility_web
+          - flutter_keyboard_visibility_linux
+          - flutter_keyboard_visibility_macos
+          - flutter_keyboard_visibility_windows
+          - flutter_keyboard_visibility
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
+      - run: flutter pub get
+        working-directory: ${{ matrix.package }}
+      - run: dart pub publish --dry-run
+        working-directory: ${{ matrix.package }}
