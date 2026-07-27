@@ -99,6 +99,10 @@ jobs:
           cache: true
       - run: flutter pub get
         working-directory: flutter_keyboard_visibility/example
+      - name: Test web implementation
+        if: matrix.renderer == 'javascript'
+        run: flutter test --platform chrome
+        working-directory: flutter_keyboard_visibility_web
       - name: Build JavaScript
         if: matrix.renderer == 'javascript'
         run: flutter build web

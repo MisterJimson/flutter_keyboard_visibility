@@ -1,3 +1,8 @@
+## [3.0.0] - July 27, 2026
+
+* Raised the minimum supported versions to Dart 3.11 and Flutter 3.41.
+* Updated package dependencies and linting.
+
 ## [2.0.0] - March 4, 2021
 
 * Migrated to null safety

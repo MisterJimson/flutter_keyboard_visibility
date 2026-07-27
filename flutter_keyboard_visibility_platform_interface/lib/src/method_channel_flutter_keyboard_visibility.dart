@@ -10,9 +10,9 @@ class MethodChannelFlutterKeyboardVisibility
   @visibleForTesting
   EventChannel eventChannel = const EventChannel('flutter_keyboard_visibility');
 
-  late final Stream<bool> _onChange = eventChannel
-      .receiveBroadcastStream()
-      .map((dynamic event) => (event as int) == 1);
+  late final Stream<bool> _onChange = eventChannel.receiveBroadcastStream().map(
+    (dynamic event) => (event as int) == 1,
+  );
 
   /// Emits changes to keyboard visibility from the platform
   @override

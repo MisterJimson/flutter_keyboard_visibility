@@ -35,10 +35,10 @@ class KeyboardVisibilityProvider extends StatefulWidget {
       controller ?? KeyboardVisibilityController();
 
   const KeyboardVisibilityProvider({
-    Key? key,
+    super.key,
     required this.child,
     this.controller,
-  }) : super(key: key);
+  });
 
   /// Returns `true` if the keyboard is currently visible, `false`
   /// if the keyboard is not currently visible, or `null` if
@@ -51,12 +51,13 @@ class KeyboardVisibilityProvider extends StatefulWidget {
   static bool isKeyboardVisible(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<
-            _KeyboardVisibilityInheritedWidget>()!
+          _KeyboardVisibilityInheritedWidget
+        >()!
         .isKeyboardVisible;
   }
 
   @override
-  _KeyboardVisibilityProviderState createState() =>
+  State<KeyboardVisibilityProvider> createState() =>
       _KeyboardVisibilityProviderState();
 }
 
@@ -69,8 +70,9 @@ class _KeyboardVisibilityProviderState
   void initState() {
     super.initState();
     _isKeyboardVisible = widget._controller.isVisible;
-    _subscription =
-        widget._controller.onChange.listen(_onKeyboardVisibilityChange);
+    _subscription = widget._controller.onChange.listen(
+      _onKeyboardVisibilityChange,
+    );
   }
 
   void _onKeyboardVisibilityChange(bool isKeyboardVisible) {
@@ -97,11 +99,10 @@ class _KeyboardVisibilityProviderState
 /// `InheritedWidget` that rebuilds descendants whenever
 /// `isKeyboardVisible` changes.
 class _KeyboardVisibilityInheritedWidget extends InheritedWidget {
-  _KeyboardVisibilityInheritedWidget({
-    Key? key,
+  const _KeyboardVisibilityInheritedWidget({
     required this.isKeyboardVisible,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final bool isKeyboardVisible;
 

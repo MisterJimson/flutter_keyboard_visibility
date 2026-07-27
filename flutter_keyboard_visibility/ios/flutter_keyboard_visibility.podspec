@@ -13,10 +13,10 @@ Flutter keyboard visibility
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Jason Rai' => 'jason.c.rai@gmail.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'flutter_keyboard_visibility/Sources/flutter_keyboard_visibility/**/*.{h,m}'
+  s.public_header_files = 'flutter_keyboard_visibility/Sources/flutter_keyboard_visibility/include/**/*.h'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '13.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }

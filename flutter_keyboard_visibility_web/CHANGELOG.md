@@ -1,3 +1,9 @@
+## [3.0.0] - July 27, 2026
+
+* Replaced `dart:html` with `package:web` for WebAssembly compatibility.
+* Raised the minimum supported versions to Dart 3.11 and Flutter 3.41.
+* Updated the platform-interface dependency and linting.
+
 ## [2.0.0] - March 4, 2021
 
 * Migrated to null safety

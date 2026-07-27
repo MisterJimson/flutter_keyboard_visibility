@@ -1,6 +1,11 @@
 .DS_Store
+.dart_tool/
+pubspec.lock
 
 # Ignore the root .idea folder except the runConfigurations folder
 !idea/
 .idea/*
 !/.idea/runConfigurations/
+
+# Generated Flutter files
+flutter_keyboard_visibility/example/ios/Flutter/ephemeral/

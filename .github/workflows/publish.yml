@@ -1,0 +1,66 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - "flutter_keyboard_visibility_platform_interface-v[0-9]+.[0-9]+.[0-9]+"
+      - "flutter_keyboard_visibility_web-v[0-9]+.[0-9]+.[0-9]+"
+      - "flutter_keyboard_visibility_linux-v[0-9]+.[0-9]+.[0-9]+"
+      - "flutter_keyboard_visibility_macos-v[0-9]+.[0-9]+.[0-9]+"
+      - "flutter_keyboard_visibility_windows-v[0-9]+.[0-9]+.[0-9]+"
+      - "flutter_keyboard_visibility-v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  platform-interface:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility_platform_interface-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility_platform_interface
+
+  web:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility_web-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility_web
+
+  linux:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility_linux-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility_linux
+
+  macos:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility_macos-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility_macos
+
+  windows:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility_windows-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility_windows
+
+  main-package:
+    if: startsWith(github.ref_name, 'flutter_keyboard_visibility-v')
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: pub.dev
+      working-directory: flutter_keyboard_visibility

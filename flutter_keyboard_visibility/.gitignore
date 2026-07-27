@@ -13,3 +13,7 @@ build/
 .idea/
 
 coverage/
+
+# Swift Package Manager
+.build/
+.swiftpm/
