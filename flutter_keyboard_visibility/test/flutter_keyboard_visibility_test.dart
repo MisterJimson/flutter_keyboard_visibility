@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -254,6 +255,64 @@ void main() {
       await tester.tap(find.byKey(const Key('box')));
       expect(focusNode.hasFocus, false);
     });
+
+    Future<FocusNode> pumpWithIgnoredBox(WidgetTester tester) async {
+      final focusNode = FocusNode();
+      addTearDown(focusNode.dispose);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: KeyboardDismissOnTap(
+            child: Material(
+              child: Column(
+                children: [
+                  IgnoreKeyboardDismiss(
+                    child: Container(
+                      key: const Key('box'),
+                      height: 100,
+                      width: 100,
+                      color: Colors.transparent,
+                    ),
+                  ),
+                  TextField(focusNode: focusNode),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      focusNode.requestFocus();
+      await tester.pump();
+      expect(focusNode.hasFocus, true);
+      return focusNode;
+    }
+
+    testWidgets(
+      'It keeps focus when a touch taps within IgnoreKeyboardDismiss',
+      (WidgetTester tester) async {
+        final focusNode = await pumpWithIgnoredBox(tester);
+
+        await tester.tap(find.byKey(const Key('box')));
+        await tester.pump();
+        expect(focusNode.hasFocus, true);
+      },
+      variant: TargetPlatformVariant.all(),
+    );
+
+    testWidgets(
+      'It keeps focus when a mouse taps within IgnoreKeyboardDismiss',
+      (WidgetTester tester) async {
+        final focusNode = await pumpWithIgnoredBox(tester);
+
+        await tester.tap(
+          find.byKey(const Key('box')),
+          kind: PointerDeviceKind.mouse,
+        );
+        await tester.pump();
+        expect(focusNode.hasFocus, true);
+      },
+      variant: TargetPlatformVariant.all(),
+    );
   });
 
   group('KeyboardVisibilityTesting', () {

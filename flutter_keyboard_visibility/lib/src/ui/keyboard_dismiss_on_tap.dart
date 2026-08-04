@@ -83,12 +83,16 @@ class IgnoreKeyboardDismiss extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerUp: (_) {
-        KeyboardDismissOnTap.ignoreNextTap(context);
-      },
-      behavior: HitTestBehavior.translucent,
-      child: child,
+    // A focused TextField unfocuses itself on taps outside its own TapRegion,
+    // independently of the flag below. Joining that region opts this subtree out.
+    return TextFieldTapRegion(
+      child: Listener(
+        onPointerUp: (_) {
+          KeyboardDismissOnTap.ignoreNextTap(context);
+        },
+        behavior: HitTestBehavior.translucent,
+        child: child,
+      ),
     );
   }
 }
