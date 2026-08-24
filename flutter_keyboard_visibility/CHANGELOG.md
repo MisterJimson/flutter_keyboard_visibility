@@ -1,3 +1,7 @@
+## [7.0.1] - August 23, 2026
+
+* Fixed `IgnoreKeyboardDismiss` so taps within its subtree keep a text field focused on desktop and for mouse input on mobile.
+
 ## [7.0.0] - July 27, 2026
 
 * Raised the minimum supported versions to Dart 3.11 and Flutter 3.41.
