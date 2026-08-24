@@ -157,7 +157,10 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_CHANNEL }}
           cache: true
-      - run: flutter pub get
+      # Use Dart directly so Flutter does not migrate checked-in project files
+      # before pub validates that the package is being published from a clean
+      # Git state.
+      - run: dart pub get
         working-directory: ${{ matrix.package }}
       - run: dart pub publish --dry-run
         working-directory: ${{ matrix.package }}
