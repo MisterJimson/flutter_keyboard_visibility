@@ -58,6 +58,7 @@ class _KeyboardDismissOnTapState extends State<KeyboardDismissOnTap> {
       },
       child: !widget.dismissOnCapturedTaps
           ? GestureDetector(
+              excludeFromSemantics: true,
               onTap: () {
                 _hideKeyboard(context);
               },
