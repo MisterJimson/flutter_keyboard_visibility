@@ -19,7 +19,7 @@ class KeyboardVisibilityHandler {
   static Stream<bool> get onChange {
     // If _testIsVisible set, don't try to create the EventChannel
     if (!_isInitialized && _testIsVisible == null) {
-      _platform.onChange.listen(_updateValue);
+      _platform.onChange.listen(_onPlatformChange);
       _isInitialized = true;
     }
     return _onChange;
@@ -41,6 +41,26 @@ class KeyboardVisibilityHandler {
   /// until the value is changed again with this method.
   static void setVisibilityForTesting(bool isKeyboardVisible) {
     _updateValue(isKeyboardVisible);
+  }
+
+  /// A change from the platform waiting to be reported; see
+  /// `_onPlatformChange`.
+  static Timer? _debounce;
+
+  /// Reports a change from the platform once it has held for a moment. A
+  /// keyboard can hide and show again within that time while the user is
+  /// still typing -- switching an Android keyboard to voice typing has been
+  /// seen to -- and reporting it would dismiss and rebuild whatever the app
+  /// shows for the keyboard.
+  ///
+  /// A shown keyboard is reported after 25 ms, so the app still reacts to it
+  /// at once; a hidden one after 250 ms, long enough to cover a mode switch.
+  static void _onPlatformChange(bool newValue) {
+    _debounce?.cancel();
+    _debounce = Timer(
+      Duration(milliseconds: newValue ? 25 : 250),
+      () => _updateValue(newValue),
+    );
   }
 
   static void _updateValue(bool newValue) {
