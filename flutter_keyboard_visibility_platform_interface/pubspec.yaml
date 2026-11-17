@@ -13,7 +13,7 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.18.0
+  meta: ^1.17.0
   plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
